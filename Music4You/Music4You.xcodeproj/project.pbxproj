@@ -28,6 +28,7 @@
 		9895CE351B54EE8F00E1CD32 /* default_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9895CE341B54EE8F00E1CD32 /* default_avatar.png */; };
 		989B6D8B1B4FCF0B005E742F /* Chart.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B6D8A1B4FCF0B005E742F /* Chart.m */; };
 		989B6D971B4FD1EC005E742F /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B6D961B4FD1EC005E742F /* CoreDataHelper.m */; };
+		98B2A5761B5AAF2B00BD6AB1 /* ChartSongListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2A5751B5AAF2B00BD6AB1 /* ChartSongListViewController.m */; };
 		98C31AC71B54B6A800EC4D91 /* PlayMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C31AC61B54B6A800EC4D91 /* PlayMusicViewController.m */; };
 		98D5BD041B5740E00070DA40 /* SongListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D5BD031B5740E00070DA40 /* SongListViewController.m */; };
 		98D5BD081B574F9D0070DA40 /* ConnectionInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D5BD071B574F9D0070DA40 /* ConnectionInterface.m */; };
@@ -86,6 +87,8 @@
 		989B6D8A1B4FCF0B005E742F /* Chart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chart.m; sourceTree = "<group>"; };
 		989B6D951B4FD1EC005E742F /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
 		989B6D961B4FD1EC005E742F /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		98B2A5741B5AAF2B00BD6AB1 /* ChartSongListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartSongListViewController.h; sourceTree = "<group>"; };
+		98B2A5751B5AAF2B00BD6AB1 /* ChartSongListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartSongListViewController.m; sourceTree = "<group>"; };
 		98C31AC51B54B6A800EC4D91 /* PlayMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayMusicViewController.h; sourceTree = "<group>"; };
 		98C31AC61B54B6A800EC4D91 /* PlayMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayMusicViewController.m; sourceTree = "<group>"; };
 		98D5BD021B5740E00070DA40 /* SongListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongListViewController.h; sourceTree = "<group>"; };
@@ -325,6 +328,8 @@
 			children = (
 				D6CB2EF51B500A99000929FC /* ChartsViewController.h */,
 				D6CB2EF61B500A99000929FC /* ChartsViewController.m */,
+				98B2A5741B5AAF2B00BD6AB1 /* ChartSongListViewController.h */,
+				98B2A5751B5AAF2B00BD6AB1 /* ChartSongListViewController.m */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 				98DF58991B4D848A00F3099D /* Music4You.xcdatamodeld in Sources */,
 				98C31AC71B54B6A800EC4D91 /* PlayMusicViewController.m in Sources */,
 				98DF589C1B4D848A00F3099D /* SearchViewController.m in Sources */,
+				98B2A5761B5AAF2B00BD6AB1 /* ChartSongListViewController.m in Sources */,
 				98DF58931B4D848A00F3099D /* main.m in Sources */,
 				9872ED5E1B5A594D006C5E42 /* AutoScrollLabel.m in Sources */,
 				D6CB2EF71B500A99000929FC /* ChartsViewController.m in Sources */,

@@ -20,7 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController.navigationBar setHidden:YES];
+    //[self.navigationController.navigationBar setHidden:YES];
+    [self.navigationItem setTitle:@"Genre"];
     self.coreDataHelper = [[CoreDataHelper alloc] init];
     self.managedObjectContext = [self managedObjectContext];
     self.coreDataHelper.context = self.managedObjectContext;

@@ -91,7 +91,7 @@
     }
 }
 
-// check width device
+// check width of device
 - (BOOL) is320WidthDevice {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
@@ -198,8 +198,6 @@
     //NSLog(@"Played %d - Remain -%d  ",(int)playTime, (int)remain);
     [self.lbCurrent setText:[NSString stringWithFormat:@"%@", [self timeFormat:playTime]]];
     [self.lbRemain setText:[NSString stringWithFormat:@"-%@", [self timeFormat:remain]]];
-    //self.iVAvatar.transform = CGAffineTransformRotate(self.iVAvatar.transform, RADIANS(<#degrees#>));
-    //CGAffineTransform rotateTransform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(120.0));
     
     
     
@@ -302,7 +300,11 @@
             Favourite *favourite = [[Favourite alloc] initWithSongID:songID title:songTitle artist:artist artistAvatar:artistAvatar composer:composer linkPlay128:linkPlay128 managedObjectContext:self.managedObjectContext];
             [self.coreDataHelper saveContext];
             if (favourite) {
-                NSLog(@"You like this song");
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"You like this song" delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
+                [alertView show];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [alertView dismissWithClickedButtonIndex:0 animated:YES];
+                });
             }
         }
         
@@ -311,7 +313,11 @@
         Favourite *favourite = [self.coreDataHelper queryFavouriteWithID:songID];
         if ([self.coreDataHelper deleteFavourite:favourite]) {
             [self.coreDataHelper saveContext];
-            NSLog(@"You dislike this song");
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"You unlike this song" delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
+            [alertView show];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [alertView dismissWithClickedButtonIndex:0 animated:YES];
+            });
         }
     }
     

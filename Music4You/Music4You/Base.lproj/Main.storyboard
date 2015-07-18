@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gcE-2S-M1Q">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
@@ -41,7 +40,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rPk-AS-Fzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1837" y="1212"/>
+            <point key="canvasLocation" x="-1081" y="1702"/>
         </scene>
         <!--Favourites View Controller-->
         <scene sceneID="qzu-nV-kro">
@@ -75,12 +74,12 @@
                     <navigationItem key="navigationItem" id="99w-2e-FZR"/>
                     <connections>
                         <outlet property="tableFavourite" destination="9Zg-Ga-xPt" id="COg-df-fck"/>
-                        <segue destination="eow-9V-nwp" kind="push" identifier="segueFavourite" id="0zn-kP-vHl"/>
+                        <segue destination="eow-9V-nwp" kind="show" identifier="segueFavourite" id="0zn-kP-vHl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zGB-Bz-6if" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1837" y="1945"/>
+            <point key="canvasLocation" x="-353" y="1693"/>
         </scene>
         <!--Search-->
         <scene sceneID="1GS-cZ-qXR">
@@ -127,13 +126,33 @@
                     <view key="view" contentMode="scaleToFill" id="2bu-Vd-vuq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uUm-jn-9Ed">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Km0-b3-zzA" id="yn9-C8-3Vh"/>
+                                    <outlet property="delegate" destination="Km0-b3-zzA" id="WuQ-4v-bA9"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uUm-jn-9Ed" firstAttribute="top" secondItem="d7X-S5-84R" secondAttribute="bottom" id="1O2-gQ-yKV"/>
+                            <constraint firstItem="pG3-mY-Y8B" firstAttribute="top" secondItem="uUm-jn-9Ed" secondAttribute="bottom" id="AQV-ge-o5l"/>
+                            <constraint firstAttribute="trailing" secondItem="uUm-jn-9Ed" secondAttribute="trailing" id="Hn5-Wx-z3i"/>
+                            <constraint firstItem="uUm-jn-9Ed" firstAttribute="leading" secondItem="2bu-Vd-vuq" secondAttribute="leading" id="c3n-0e-Zrg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kFH-U8-sp5"/>
+                    <connections>
+                        <outlet property="tableChart" destination="uUm-jn-9Ed" id="7Hh-Qc-aDO"/>
+                        <segue destination="uLf-EJ-xku" kind="show" identifier="segueChart" id="GwA-Nn-Gat"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3jx-ZC-vDk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-371" y="1080"/>
+            <point key="canvasLocation" x="-363" y="1000"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -223,7 +242,7 @@
                         <outlet property="searchBar" destination="7St-cM-Yi9" id="IiT-ab-3FB"/>
                         <outlet property="segment" destination="5Ib-FW-g03" id="yw5-0i-5dK"/>
                         <outlet property="tableSearch" destination="36v-EJ-Jmr" id="TAa-eJ-wh0"/>
-                        <segue destination="eow-9V-nwp" kind="push" identifier="segueSearch" id="Ehn-Sn-Bsz"/>
+                        <segue destination="eow-9V-nwp" kind="show" identifier="segueSearch" id="Ehn-Sn-Bsz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -268,12 +287,56 @@
                     <connections>
                         <outlet property="indicator" destination="VvY-b4-LUy" id="gsO-le-o5I"/>
                         <outlet property="tableSong" destination="uWD-2Z-Qa8" id="6cx-JQ-HTX"/>
-                        <segue destination="eow-9V-nwp" kind="push" identifier="segueGenrePlay" id="0BQ-WG-03U"/>
+                        <segue destination="eow-9V-nwp" kind="show" identifier="segueGenrePlay" id="0BQ-WG-03U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byk-9T-Z1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="357" y="-362"/>
+        </scene>
+        <!--Chart Song List View Controller-->
+        <scene sceneID="Ex2-1U-HZs">
+            <objects>
+                <viewController id="uLf-EJ-xku" customClass="ChartSongListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iLU-Nw-zOL"/>
+                        <viewControllerLayoutGuide type="bottom" id="F5U-DW-2da"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KgL-fy-Dba">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="arv-oG-1Xz">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yiG-ab-Ova">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="uLf-EJ-xku" id="Rxd-Wo-23v"/>
+                                    <outlet property="delegate" destination="uLf-EJ-xku" id="Aeb-VW-frM"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="arv-oG-1Xz" secondAttribute="centerY" id="72c-aw-fEa"/>
+                            <constraint firstItem="F5U-DW-2da" firstAttribute="top" secondItem="yiG-ab-Ova" secondAttribute="bottom" id="Edm-eu-Yms"/>
+                            <constraint firstAttribute="trailing" secondItem="yiG-ab-Ova" secondAttribute="trailing" id="VMx-mP-XQO"/>
+                            <constraint firstItem="yiG-ab-Ova" firstAttribute="top" secondItem="iLU-Nw-zOL" secondAttribute="bottom" id="Wmf-Gs-TCt"/>
+                            <constraint firstAttribute="centerX" secondItem="arv-oG-1Xz" secondAttribute="centerX" id="bJR-3t-r9v"/>
+                            <constraint firstItem="yiG-ab-Ova" firstAttribute="leading" secondItem="KgL-fy-Dba" secondAttribute="leading" id="zcU-OP-wFP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="indicator" destination="arv-oG-1Xz" id="K76-c9-xZi"/>
+                        <outlet property="tableSong" destination="yiG-ab-Ova" id="Dxc-6C-VGP"/>
+                        <segue destination="eow-9V-nwp" kind="show" identifier="segueChartPlay" id="Nt5-3j-eYO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mdz-xL-Yab" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="313" y="1000"/>
         </scene>
         <!--Play Music View Controller-->
         <scene sceneID="EeF-Qn-E1h">
@@ -498,7 +561,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUg-eS-sXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="813" y="785"/>
+            <point key="canvasLocation" x="955" y="383"/>
         </scene>
         <!--Genre View Controller-->
         <scene sceneID="Vlt-1d-K0s">
@@ -532,7 +595,7 @@
                     <navigationItem key="navigationItem" id="zM4-Ex-Scs"/>
                     <connections>
                         <outlet property="tableGenre" destination="UVc-ES-jHz" id="hQH-YN-aAJ"/>
-                        <segue destination="BXE-yd-8VN" kind="push" identifier="segueGenre" id="BMV-Pb-iBE"/>
+                        <segue destination="BXE-yd-8VN" kind="show" identifier="segueGenre" id="BMV-Pb-iBE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jsZ-jN-8JS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -568,6 +631,6 @@
         <image name="stop.png" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ehn-Sn-Bsz"/>
+        <segue reference="0zn-kP-vHl"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -22,7 +22,7 @@
     [self.tableSearch setHidden:YES];
     [self.tableSearch setBounces:NO];
     [self.indicator setTransform:CGAffineTransformMakeScale(3, 3)];
-    
+    [self.navigationItem setTitle:@"Search"];
     //NSLog(@"APIs: %@", [APIs getAPIsCharts]);
     //NSLog(@"APIs: %@", [APIs getAPIsChartDetailWithChartID:@"IWZ9Z0BW"]);
 }
@@ -30,7 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.searchBar endEditing:NO];
-    [self.navigationController.navigationBar setHidden:YES];
+    //[self.navigationController.navigationBar setHidden:YES];
     [self.tabBarController.tabBar setHidden:NO];
 }
 
