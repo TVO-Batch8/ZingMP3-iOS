@@ -9,7 +9,7 @@
 #import "ChartSongListViewController.h"
 
 @interface ChartSongListViewController ()
-
+@property (strong, nonatomic) PlayMusicViewController *playMusicVC;
 @end
 
 @implementation ChartSongListViewController
@@ -18,6 +18,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.indicator setTransform:CGAffineTransformMakeScale(3, 3)];
+    self.arraySong = [NSMutableArray array];
+    [self requestJsonDataWithChartID:self.chartID];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tabBarController.tabBar setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,7 +52,7 @@
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection {
     if (self.downloadedData) {
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:self.downloadedData options:kNilOptions error:nil];
+        NSArray *json = [NSJSONSerialization JSONObjectWithData:self.downloadedData options:kNilOptions error:nil];
         [self parseJson:json];
         if (self.arraySong.count == 0) {
             [self.indicator stopAnimating];
@@ -54,7 +61,7 @@
             [connection cancel];
             return;
         }
-        if (self.arraySong.count >= 95) {
+        if (self.arraySong.count >= 35) {
             // update UI
             [self.indicator stopAnimating];
             [self.tableSong reloadData];
@@ -72,24 +79,17 @@
 
 - (void) parseJson:(NSArray *)json {
     NSLog(@"\n***** start parseJson **********");
-    int resultCount = (int)[json valueForKey:@"ResultCount"];
-    if (resultCount == 0) {
-        NSLog(@"No data");
-        return;
-    }
     
     
     
-    
-    NSArray *data = [json valueForKey:@"Data"];
-    for (int i = 0; i < data.count; i++) {
-        NSString *iD = [[data objectAtIndex:i] valueForKey:@"ID"];
-        NSString *title = [[data objectAtIndex:i] valueForKey:@"Title"];
-        NSString *artist = [[data objectAtIndex:i] valueForKey:@"Artist"];
+    for (int i = 0; i < json.count; i++) {
+        NSString *iD = [[json objectAtIndex:i] valueForKey:@"ID"];
+        NSString *title = [[json objectAtIndex:i] valueForKey:@"Title"];
+        NSString *artist = [[json objectAtIndex:i] valueForKey:@"Artist"];
         
         
-        NSArray *artistDetail = [[data objectAtIndex:i] valueForKey:@"ArtistDetail"];
-        NSString *artistAvatar = [[data objectAtIndex:i] valueForKey:@"ArtistAvatar"];
+        NSArray *artistDetail = [[json objectAtIndex:i] valueForKey:@"ArtistDetail"];
+        NSString *artistAvatar = [[json objectAtIndex:i] valueForKey:@"ArtistAvatar"];
         
         if (artistDetail) {
             NSDictionary *artistDic = [artistDetail lastObject];
@@ -103,8 +103,8 @@
             }
         }
         
-        NSString *composer = [[data objectAtIndex:i] valueForKey:@"Composer"];
-        NSString *linkPlay = [[data objectAtIndex:i] valueForKey:@"LinkPlay128"];
+        NSString *composer = [[json objectAtIndex:i] valueForKey:@"Composer"];
+        NSString *linkPlay = [[json objectAtIndex:i] valueForKey:@"LinkPlay128"];
         NSArray *array = [NSArray arrayWithObjects:iD, title, artist, artistAvatar, composer, linkPlay, nil];
         [self.arraySong addObject:array];
     }
@@ -115,6 +115,10 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100.0f;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.arraySong.count;
 }
@@ -122,9 +126,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:chartSongCellID];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chartSongCellID];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:chartSongCellID];
     }
+    [cell.textLabel setText:[NSString stringWithFormat:@"%ld. %@", (long)indexPath.row + 1, [[self.arraySong objectAtIndex:indexPath.row] objectAtIndex:1]]];
+    [cell.detailTextLabel setText:[[self.arraySong objectAtIndex:indexPath.row] objectAtIndex:2]];
+    [cell.imageView setImage:[UIImage imageNamed:@"loading.png"]];
     
+    NSURL *urlAvatar = [NSURL URLWithString:[[self.arraySong objectAtIndex:(int)indexPath.row] objectAtIndex:3]];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        NSData *dataAvatar = [NSData dataWithContentsOfURL:urlAvatar];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIImage *avatar = [UIImage imageWithData:dataAvatar];
+            if (avatar) {
+                [cell.imageView setImage:avatar];
+            }
+        });
+    });
     return cell;
 }
 
@@ -136,8 +155,13 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     int selectedIndex = (int)self.tableSong.indexPathForSelectedRow.row;
     if ([segue.identifier isEqualToString:@"segueChartPlay"]) {
-        PlayMusicViewController *playMusicVC = (PlayMusicViewController *)segue.destinationViewController;
+        self.playMusicVC = (PlayMusicViewController *)segue.destinationViewController;
         
+        
+        self.playMusicVC.isPlayingSongSelected = NO;
+        
+        self.playMusicVC.arraySong = self.arraySong;
+        self.playMusicVC.currentIndex = selectedIndex;
     }
 }/*
 #pragma mark - Navigation

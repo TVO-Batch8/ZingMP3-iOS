@@ -85,7 +85,6 @@
 
 #pragma mark - UITableView Delegate
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //self.sectionSelected = indexPath.section;
     [self performSegueWithIdentifier:@"segueGenre" sender:self];
 }
 

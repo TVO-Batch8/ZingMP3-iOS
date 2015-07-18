@@ -43,6 +43,8 @@
 		98DF58A41B4D848A00F3099D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98DF58A21B4D848A00F3099D /* LaunchScreen.xib */; };
 		98DF58B01B4D848B00F3099D /* Music4YouTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DF58AF1B4D848B00F3099D /* Music4YouTests.m */; };
 		98DF58BF1B4D853C00F3099D /* NSString+SCEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DF58BD1B4D853C00F3099D /* NSString+SCEncoding.m */; };
+		98F8308B1B5AC6BD0039CC24 /* ChartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F830891B5AC6BD0039CC24 /* ChartTableViewCell.m */; };
+		98F8308C1B5AC6BD0039CC24 /* ChartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98F8308A1B5AC6BD0039CC24 /* ChartTableViewCell.xib */; };
 		D6A174A01B4E90E000A6AE2F /* APIs.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A1749F1B4E90E000A6AE2F /* APIs.m */; };
 		D6CB2EF71B500A99000929FC /* ChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CB2EF61B500A99000929FC /* ChartsViewController.m */; };
 		D6CB2EFB1B500B69000929FC /* GenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CB2EFA1B500B69000929FC /* GenreViewController.m */; };
@@ -113,6 +115,9 @@
 		98DF58AF1B4D848B00F3099D /* Music4YouTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Music4YouTests.m; sourceTree = "<group>"; };
 		98DF58BC1B4D853C00F3099D /* NSString+SCEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SCEncoding.h"; sourceTree = "<group>"; };
 		98DF58BD1B4D853C00F3099D /* NSString+SCEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SCEncoding.m"; sourceTree = "<group>"; };
+		98F830881B5AC6BD0039CC24 /* ChartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartTableViewCell.h; sourceTree = "<group>"; };
+		98F830891B5AC6BD0039CC24 /* ChartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartTableViewCell.m; sourceTree = "<group>"; };
+		98F8308A1B5AC6BD0039CC24 /* ChartTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChartTableViewCell.xib; sourceTree = "<group>"; };
 		D6A1749E1B4E90E000A6AE2F /* APIs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIs.h; sourceTree = "<group>"; };
 		D6A1749F1B4E90E000A6AE2F /* APIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIs.m; sourceTree = "<group>"; };
 		D6CB2EF51B500A99000929FC /* ChartsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartsViewController.h; sourceTree = "<group>"; };
@@ -282,6 +287,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		98F830871B5AC6640039CC24 /* CustomCellChart */ = {
+			isa = PBXGroup;
+			children = (
+				98F830881B5AC6BD0039CC24 /* ChartTableViewCell.h */,
+				98F830891B5AC6BD0039CC24 /* ChartTableViewCell.m */,
+				98F8308A1B5AC6BD0039CC24 /* ChartTableViewCell.xib */,
+			);
+			name = CustomCellChart;
+			sourceTree = "<group>";
+		};
 		D6A1749D1B4E90AB00A6AE2F /* APIs */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +341,7 @@
 		D6DC251C1B501272006BF89A /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				98F830871B5AC6640039CC24 /* CustomCellChart */,
 				D6CB2EF51B500A99000929FC /* ChartsViewController.h */,
 				D6CB2EF61B500A99000929FC /* ChartsViewController.m */,
 				98B2A5741B5AAF2B00BD6AB1 /* ChartSongListViewController.h */,
@@ -445,6 +461,7 @@
 				98DF589F1B4D848A00F3099D /* Main.storyboard in Resources */,
 				9895CE331B54CA4900E1CD32 /* volumeMid.png in Resources */,
 				9895CE311B54CA4900E1CD32 /* volumeHigh.png in Resources */,
+				98F8308C1B5AC6BD0039CC24 /* ChartTableViewCell.xib in Resources */,
 				9895CE321B54CA4900E1CD32 /* volumeLow.png in Resources */,
 				9895CE271B54CA4900E1CD32 /* next.png in Resources */,
 				9895CE281B54CA4900E1CD32 /* pause.png in Resources */,
@@ -487,6 +504,7 @@
 				98C31AC71B54B6A800EC4D91 /* PlayMusicViewController.m in Sources */,
 				98DF589C1B4D848A00F3099D /* SearchViewController.m in Sources */,
 				98B2A5761B5AAF2B00BD6AB1 /* ChartSongListViewController.m in Sources */,
+				98F8308B1B5AC6BD0039CC24 /* ChartTableViewCell.m in Sources */,
 				98DF58931B4D848A00F3099D /* main.m in Sources */,
 				9872ED5E1B5A594D006C5E42 /* AutoScrollLabel.m in Sources */,
 				D6CB2EF71B500A99000929FC /* ChartsViewController.m in Sources */,

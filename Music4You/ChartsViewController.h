@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "APIs.h"
 #import "CoreDataHelper.h"
 #import "ChartSongListViewController.h"
 #define chartCellID @"chartCellID"
 
-@interface ChartsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ChartsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;

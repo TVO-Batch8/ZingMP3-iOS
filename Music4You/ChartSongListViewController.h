@@ -13,13 +13,11 @@
 
 @interface ChartSongListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableSong;
+
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
-
-
-@property (strong, nonatomic) NSMutableArray *arraySong;
-
 @property (strong, nonatomic) NSMutableData *downloadedData;
 @property (strong, nonatomic) NSURLResponse *urlResponse;
 
+@property (strong, nonatomic) NSMutableArray *arraySong;
 @property (strong, nonatomic) NSString *chartID;
 @end

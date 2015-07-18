@@ -146,8 +146,6 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:songCellID];
     }
-    //NSString *title = @"";//[[self.arraySong objectAtIndex:indexPath.row] objectAtIndex:1];
-    //[cell.textLabel setText:[NSString stringWithFormat:@"my song: %@", title]];
     
     [cell.textLabel setText:[NSString stringWithFormat:@"%ld. %@", (long)indexPath.row + 1, [[self.arraySong objectAtIndex:indexPath.row] objectAtIndex:1]]];
     [cell.detailTextLabel setText:[[self.arraySong objectAtIndex:indexPath.row] objectAtIndex:2]];

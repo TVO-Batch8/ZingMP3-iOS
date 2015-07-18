@@ -22,8 +22,7 @@
     self.coreDataHelper.context = self.managedObjectContext;
     
     self.arrayChart = [NSMutableArray arrayWithArray:[self.coreDataHelper fetchAllChart]];
-    
-    
+    [self.tableChart setBounces:NO];
     [self.navigationItem setTitle:@"Chart"];
     NSLog(@"Chart APIs: %@", [APIs getAPIsChartDetailWithChartID:@"IWZ9Z08I"]);
 }
@@ -50,6 +49,10 @@
     return self.arrayChart.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100.0f;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:chartCellID];
     if (!cell) {
@@ -59,6 +62,10 @@
     [cell.textLabel setText:chart.chartName];
     return cell;
 }
+
+
+
+
 
 #pragma mark - UITableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -71,6 +78,7 @@
         ChartSongListViewController *chartSongListVC = (ChartSongListViewController *)segue.destinationViewController;
         Chart *chart = [self.arrayChart objectAtIndex:selectedIndex];
         chartSongListVC.chartID = chart.chartID;
+        [chartSongListVC.arraySong removeAllObjects];
     }
 }
 /*
