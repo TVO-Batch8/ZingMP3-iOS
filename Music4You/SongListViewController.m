@@ -92,7 +92,6 @@
     int resultCount = (int)[json valueForKey:@"ResultCount"];
     if (resultCount == 0) {
         NSLog(@"No data");
-        //[self.tableSong setHidden:YES];
         return;
     }
     [self.tableSong setHidden:NO];
@@ -108,28 +107,18 @@
         
         if (artistDetail) {
             NSDictionary *artistDic = [artistDetail lastObject];
-            
-            
-            
-            artistAvatar = [artistDic valueForKey:@"ArtistAvatar"];
-            
-            if ([artistAvatar isKindOfClass:[NSString class]]) {
-                if ([artistAvatar containsString:@"94_94"]) {
-                    artistAvatar = [artistAvatar stringByReplacingOccurrencesOfString:@"94_94" withString:@"165_165"];
+            if ([artistDic isKindOfClass:[NSDictionary class]]) {
+                artistAvatar = [artistDic valueForKey:@"ArtistAvatar"];
+                if ([artistAvatar isKindOfClass:[NSString class]]) {
+                    if ([artistAvatar containsString:@"94_94"]) {
+                        artistAvatar = [artistAvatar stringByReplacingOccurrencesOfString:@"94_94" withString:@"165_165"];
+                    }
                 }
             }
-            
         }
         
-        
-        //NSString *artistAvatar1 = [[data objectAtIndex:i] valueForKey:@"ArtistAvatar"];
-        
         NSString *composer = [[data objectAtIndex:i] valueForKey:@"Composer"];
-        
-        
-        
         NSString *linkPlay = [[data objectAtIndex:i] valueForKey:@"LinkPlay128"];
-        
         NSArray *array = [NSArray arrayWithObjects:iD, title, artist, artistAvatar, composer, linkPlay, nil];
         [self.arraySong addObject:array];
     }

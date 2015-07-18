@@ -16,6 +16,9 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *iVAvatar;
 
+@property (strong, nonatomic) AutoScrollLabel *autoScrollLabelTitle;
+@property (strong, nonatomic) AutoScrollLabel *autoScrollLabelArtist;
+@property (strong, nonatomic) AutoScrollLabel *autoScrollLabelComposer;
 @property (weak, nonatomic) IBOutlet UILabel *lbArtist;
 @property (weak, nonatomic) IBOutlet UILabel *lbComposer;
 
@@ -55,6 +58,15 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChangeNotification:) name:UIDeviceOrientationDidChangeNotification object:nil];
     [self.tabBarController.tabBar setHidden:YES];
+    // create autoScrollLabel
+    self.autoScrollLabelTitle = [[AutoScrollLabel alloc] initWithFrame:CGRectMake(10, 15, 320, 16)];
+    [self.autoScrollLabelTitle setTextColor:[UIColor redColor]];
+    self.autoScrollLabelArtist = [[AutoScrollLabel alloc] initWithFrame:CGRectMake(10, 15, 320, 16)];
+    [self.autoScrollLabelArtist setTextColor:[UIColor purpleColor]];
+    self.autoScrollLabelComposer = [[AutoScrollLabel alloc] initWithFrame:CGRectMake(10, 15, 320, 16)];
+    [self.autoScrollLabelComposer setTextColor:[UIColor blueColor]];
+    
+    
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
@@ -89,6 +101,8 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
     //self.song = [[AVPlayer alloc] init];
+    [self.lbArtist setText:@" "];
+    [self.lbComposer setText:@" "];
     [self.btnFavourite setImage:[UIImage imageNamed:@"likeYes"] forState:UIControlStateSelected];
     [self.btnShuffle setImage:[UIImage imageNamed:@"shuffleYes.png"] forState:UIControlStateSelected];
     [self.btnRepeat setImage:[UIImage imageNamed:@"repeatYes.png"] forState:UIControlStateSelected];
@@ -121,12 +135,19 @@
     [self.song play];
     
     NSString *title = [currentSong objectAtIndex:1];
-    [self.navigationItem setTitle:[NSString stringWithFormat:@"%@", title]];
+    [self.navigationItem setTitle:title];
+    
+    //[self.autoScrollLabelTitle setText:title];
     NSString *artist = [currentSong objectAtIndex:2];
     [self.lbArtist setText:artist];
+    //[self.autoScrollLabelArtist setText:artist];
     NSString *composer = [currentSong objectAtIndex:4];
     [self.lbComposer setText:composer];
+    //[self.autoScrollLabelComposer setText:composer];
     
+    //[self.navigationController.navigationBar addSubview:self.autoScrollLabelTitle];
+    //[self.lbArtist addSubview:self.autoScrollLabelArtist];
+    //[self.lbComposer addSubview:self.autoScrollLabelComposer];
     
     NSString *avatar = [currentSong objectAtIndex:3];
     

@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "CoreDataHelper.h"
 #import "AppDelegate.h"
+#import "AutoScrollLabel.h"
 #define RADIANS(degrees) ((degrees * M_PI) / 180.0)
 
 @interface PlayMusicViewController : UIViewController<AVAudioPlayerDelegate>

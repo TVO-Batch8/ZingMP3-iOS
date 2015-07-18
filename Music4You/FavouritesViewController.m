@@ -23,6 +23,7 @@
     self.coreDataHelper.context = self.managedObjectContext;
     self.arrayFavourites = [NSMutableArray arrayWithObjects:nil];
     [self.tableFavourite setHidden:YES];
+    [self.navigationItem setTitle:@"Favourites"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

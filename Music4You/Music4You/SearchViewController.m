@@ -22,12 +22,14 @@
     [self.tableSearch setHidden:YES];
     [self.tableSearch setBounces:NO];
     [self.indicator setTransform:CGAffineTransformMakeScale(3, 3)];
+    
     //NSLog(@"APIs: %@", [APIs getAPIsCharts]);
     //NSLog(@"APIs: %@", [APIs getAPIsChartDetailWithChartID:@"IWZ9Z0BW"]);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.searchBar endEditing:NO];
     [self.navigationController.navigationBar setHidden:YES];
     [self.tabBarController.tabBar setHidden:NO];
 }
@@ -73,7 +75,7 @@
 
 // Handle function to request image from api with search key
 - (void) requestJsonDataWithSearchKey:(NSString *)searchKey {
-    
+    [self.tableSearch setHidden:YES];
     int pageInt = (int)self.arraySong.count/10;
     NSString *page = [NSString stringWithFormat:@"%d", pageInt + 1];
     NSLog(@"String page: %@", page);
@@ -112,7 +114,7 @@
             [self.indicator stopAnimating];
             [self.lbNoData setHidden:YES];
             [self.tableSearch reloadData];
-            
+            [self.searchBar endEditing:NO];
             [self.tableSearch setHidden:NO];
             [connection cancel];
             return;
@@ -147,15 +149,14 @@
         NSString *artistAvatar = [[data objectAtIndex:i] valueForKey:@"ArtistAvatar"];
         if (artistDetail) {
             NSDictionary *artistDic = [artistDetail lastObject];
-            
-            artistAvatar = [artistDic valueForKey:@"ArtistAvatar"];
-            
-            if ([artistAvatar isKindOfClass:[NSString class]]) {
-                if ([artistAvatar containsString:@"94_94"]) {
-                    artistAvatar = [artistAvatar stringByReplacingOccurrencesOfString:@"94_94" withString:@"165_165"];
+            if ([artistDic isKindOfClass:[NSDictionary class]]) {
+                artistAvatar = [artistDic valueForKey:@"ArtistAvatar"];
+                if ([artistAvatar isKindOfClass:[NSString class]]) {
+                    if ([artistAvatar containsString:@"94_94"]) {
+                        artistAvatar = [artistAvatar stringByReplacingOccurrencesOfString:@"94_94" withString:@"165_165"];
+                    }
                 }
             }
-            
         }
         
         NSString *composer = [[data objectAtIndex:i] valueForKey:@"Composer"];
@@ -180,7 +181,7 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100.0f;
+    return 80.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -235,7 +236,7 @@
 
 // action call search when segmentChanged
 - (IBAction)segmentChanged:(id)sender {
-    if ([sender isEqual:self.segment]) {
+    if ([sender isEqual:self.segment] && ![self.searchBar.text isEqualToString:@""]) {
         [self searchBarSearchButtonClicked:self.searchBar];
     }
 }
