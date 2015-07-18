@@ -90,6 +90,8 @@
             break;
     }
 }
+
+// check width device
 - (BOOL) is320WidthDevice {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
