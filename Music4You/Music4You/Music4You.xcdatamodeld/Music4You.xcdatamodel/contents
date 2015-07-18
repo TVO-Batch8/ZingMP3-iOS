@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Chart" representedClassName="Chart" syncable="YES">
+        <attribute name="chartID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chartName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Favourite" representedClassName="Favourite" syncable="YES">
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artistAvatar" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="composer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="linkPlay128" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="songID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="songTitle" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Genre" representedClassName="Genre" syncable="YES">
+        <attribute name="genreID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="genreName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="genreToSub" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubGenre" inverseName="subToGenre" inverseEntity="SubGenre" syncable="YES"/>
+    </entity>
+    <entity name="SubGenre" representedClassName="SubGenre" syncable="YES">
+        <attribute name="genreID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subGenreID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subGenreName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="subToGenre" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Genre" inverseName="genreToSub" inverseEntity="Genre" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Chart" positionX="115" positionY="-198" width="128" height="75"/>
+        <element name="Favourite" positionX="-90" positionY="-210" width="128" height="135"/>
+        <element name="Genre" positionX="9" positionY="-171" width="128" height="90"/>
+        <element name="SubGenre" positionX="18" positionY="-162" width="128" height="105"/>
+    </elements>
+</model>
