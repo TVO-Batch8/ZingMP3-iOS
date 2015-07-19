@@ -125,8 +125,8 @@
     CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
     rotation.fromValue = [NSNumber numberWithFloat:0];
     rotation.toValue = [NSNumber numberWithFloat:(2*M_PI)];
-    rotation.duration = 5.0;// Speed
-    rotation.repeatCount = HUGE_VALF;// Repeat forever.
+    rotation.duration = 5.0;//Speed
+    rotation.repeatCount = HUGE_VALF;//Repeat forever.
     [self.iVAvatar.layer addAnimation:rotation forKey:@"Spin"];
 }
 
