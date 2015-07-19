@@ -33,8 +33,10 @@
     [self.arrayFavourites addObjectsFromArray:[self.coreDataHelper fetchAllFavoutite]];
     if (self.arrayFavourites.count >= 1) {
         [self.tableFavourite setHidden:NO];
+        [self.lbNoFavourite setHidden:YES];
     } else {
         [self.tableFavourite setHidden:YES];
+        [self.lbNoFavourite setHidden:NO];
     }
     
     [self.tableFavourite reloadData];
@@ -88,10 +90,6 @@
                 [cell.imageView setImage:[UIImage imageWithData:dataImage]];
             });
         });
-        
-        
-        
-        
     } else {
         [cell.textLabel setText:@"No Favourite"];
     }
@@ -99,12 +97,27 @@
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (self.arrayFavourites.count > 0) {
         Favourite *favourite = [self.arrayFavourites objectAtIndex:indexPath.row];
         if ([self.coreDataHelper deleteFavourite:favourite]) {
+            NSString *message = [NSString stringWithFormat:@"You unlike %@", favourite.songTitle];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+            [alertView show];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [alertView dismissWithClickedButtonIndex:0 animated:YES];
+            });
+            
             [self.arrayFavourites removeObject:favourite];
             [self.coreDataHelper saveContext];
+            
+            
+            
             [tableView reloadData];
+            if (self.arraySong.count == 0) {
+                [self.tableFavourite setHidden:YES];
+                [self.lbNoFavourite setHidden:NO];
+            }
         }
         NSLog(@"Delete OK");
     }

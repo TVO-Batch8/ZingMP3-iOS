@@ -219,6 +219,72 @@
     return YES;
 }
 
+- (void)incomingCallHandling {
+    CTCallCenter * _callCenter = [[CTCallCenter alloc] init];
+    _callCenter.callEventHandler = ^(CTCall* call)
+    {
+        
+        if ([call.callState isEqualToString:CTCallStateDisconnected])
+        {
+            //NSLog(@"Call has been disconnected");
+            [self.song play];
+        }
+        else if([call.callState isEqualToString:CTCallStateDialing])
+        {
+            //NSLog(@"Call start");
+        }
+        else if ([call.callState isEqualToString:CTCallStateConnected])
+        {
+            
+            //NSLog(@"Call has just been connected");
+        }
+        else if([call.callState isEqualToString:CTCallStateIncoming])
+        {
+            //NSLog(@"Call is incoming");
+            // You have to initiate/post your local notification through NSNotification center like this
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"stopAVPlayer" object:nil];
+            [self.song pause];
+        } else
+        {
+            //NSLog(@"None of the conditions");
+        }
+        
+        
+    };
+}
+
+- (void)handleNetworkStatusNotification:(NSNotification *)note {
+    Reachability* curReach = [note object];
+    NetworkStatus status = curReach.currentReachabilityStatus;
+    NSString *statusString;
+    switch (status) {
+        case NotReachable: {
+            [self.song pause];
+            statusString = @"Not Reachable";
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:statusString message:@"Check your internet connection" delegate:self cancelButtonTitle:@"Settings" otherButtonTitles: nil];
+            [alertView show];
+            
+        }
+            break;
+//        case ReachableViaWiFi:
+//            statusString = @"Wifi";
+//            break;
+//        case ReachableViaWWAN:
+//            statusString = @"WWAN";
+//            break;
+//            
+        default:
+            break;
+    }
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: UIApplicationOpenSettingsURLString]];
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.coreDataHelper = [[CoreDataHelper alloc] init];
@@ -238,6 +304,11 @@
     // init an instance of song player
     self.song = [[AVPlayer alloc] init];
     
+    [self incomingCallHandling];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkStatusNotification:) name:kReachabilityChangedNotification object:nil];
+    self.reachability = [Reachability reachabilityForInternetConnection];
+    [self.reachability startNotifier];
     return YES;
 }
 
@@ -262,6 +333,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
     [self saveContext];
 }
 

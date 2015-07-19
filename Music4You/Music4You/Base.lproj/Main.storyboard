@@ -54,6 +54,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favourite" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phs-QI-7Bq">
+                                <rect key="frame" x="251" y="290" width="98.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9Zg-Ga-xPt">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,12 +73,15 @@
                         <constraints>
                             <constraint firstItem="9Zg-Ga-xPt" firstAttribute="leading" secondItem="Uhb-Sb-bQL" secondAttribute="leading" id="1UB-YN-Bat"/>
                             <constraint firstAttribute="trailing" secondItem="9Zg-Ga-xPt" secondAttribute="trailing" id="2fI-Wo-8CY"/>
+                            <constraint firstAttribute="centerX" secondItem="Phs-QI-7Bq" secondAttribute="centerX" id="Ow8-BL-Kal"/>
+                            <constraint firstAttribute="centerY" secondItem="Phs-QI-7Bq" secondAttribute="centerY" id="goc-cV-7be"/>
                             <constraint firstItem="9Zg-Ga-xPt" firstAttribute="top" secondItem="IID-tv-rhK" secondAttribute="bottom" id="lB1-Ie-atY"/>
                             <constraint firstItem="RQk-Uv-t75" firstAttribute="top" secondItem="9Zg-Ga-xPt" secondAttribute="bottom" id="zCX-qw-B59"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="99w-2e-FZR"/>
                     <connections>
+                        <outlet property="lbNoFavourite" destination="Phs-QI-7Bq" id="FiM-rS-LkL"/>
                         <outlet property="tableFavourite" destination="9Zg-Ga-xPt" id="COg-df-fck"/>
                         <segue destination="eow-9V-nwp" kind="show" identifier="segueFavourite" id="0zn-kP-vHl"/>
                     </connections>

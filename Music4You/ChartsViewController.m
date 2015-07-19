@@ -78,6 +78,7 @@
         ChartSongListViewController *chartSongListVC = (ChartSongListViewController *)segue.destinationViewController;
         Chart *chart = [self.arrayChart objectAtIndex:selectedIndex];
         chartSongListVC.chartID = chart.chartID;
+        chartSongListVC.chartName = chart.chartName;
         [chartSongListVC.arraySong removeAllObjects];
     }
 }

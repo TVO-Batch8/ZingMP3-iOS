@@ -78,6 +78,7 @@
     return context;
 }
 
+
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -102,16 +103,21 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
-    //self.song = [[AVPlayer alloc] init];
-    [self.lbArtist setText:@" "];
-    [self.lbComposer setText:@" "];
     [self.btnFavourite setImage:[UIImage imageNamed:@"likeYes"] forState:UIControlStateSelected];
     [self.btnShuffle setImage:[UIImage imageNamed:@"shuffleYes.png"] forState:UIControlStateSelected];
     [self.btnRepeat setImage:[UIImage imageNamed:@"repeatYes.png"] forState:UIControlStateSelected];
     [self.btnPause setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateSelected];
     
     
+    
     [self playSong];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if (self.song.rate != 1.0f) {
+        [self.btnPause setSelected:YES];
+        //[self.iVAvatar.layer removeAnimationForKey:@"Spin"];
+    }
 }
 
 // begin spin avatar

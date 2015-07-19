@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (weak, nonatomic) IBOutlet UILabel *lbNoFavourite;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableFavourite;
 @property (strong, nonatomic) NSMutableArray *arrayFavourites;

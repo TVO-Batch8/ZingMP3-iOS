@@ -10,9 +10,11 @@
 #import <CoreData/CoreData.h>
 #import <AVFoundation/AVFoundation.h>
 #import "CoreDataHelper.h"
+#import "Reachability.h"
+@import CoreTelephony;
 
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -24,5 +26,6 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 @property  (strong, nonatomic) AVPlayer *song;
+@property (strong, nonatomic) Reachability *reachability;
 @end
 

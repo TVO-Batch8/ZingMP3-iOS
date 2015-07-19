@@ -24,6 +24,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationItem setTitle:self.chartName];
     [self.tabBarController.tabBar setHidden:NO];
 }
 
