@@ -488,6 +488,12 @@
                                     <action selector="btnStopTouched:" destination="eow-9V-nwp" eventType="touchUpInside" id="M3h-cp-RhK"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nf6-2y-8FZ">
+                                <rect key="frame" x="290.5" y="263.5" width="19.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.95319604001735725" blue="0.98298560388767919" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -500,6 +506,7 @@
                             <constraint firstAttribute="centerX" secondItem="v5z-BR-ee6" secondAttribute="centerX" id="9A5-8e-VuX"/>
                             <constraint firstItem="5z5-gl-5dV" firstAttribute="leading" secondItem="RMw-HV-iw6" secondAttribute="trailing" constant="10" id="AXg-nQ-I8w"/>
                             <constraint firstItem="NAh-8o-YoM" firstAttribute="height" secondItem="bhZ-5g-T1H" secondAttribute="height" id="CKM-ff-Igf"/>
+                            <constraint firstItem="5z5-gl-5dV" firstAttribute="top" secondItem="Nf6-2y-8FZ" secondAttribute="bottom" constant="15" id="Ce0-Ka-hpi"/>
                             <constraint firstItem="Ayp-jB-hdd" firstAttribute="top" secondItem="RMw-HV-iw6" secondAttribute="bottom" constant="10" id="HNj-c7-7n0"/>
                             <constraint firstItem="7mk-N0-LQg" firstAttribute="top" secondItem="GJ1-Ua-Ikx" secondAttribute="bottom" constant="10" id="HiV-sf-Km5"/>
                             <constraint firstItem="FTN-cw-NEp" firstAttribute="width" secondItem="Xfj-Pn-oft" secondAttribute="width" id="Hnk-3s-9ya"/>
@@ -535,6 +542,7 @@
                             <constraint firstItem="s9l-Fq-1Em" firstAttribute="leading" secondItem="NAh-8o-YoM" secondAttribute="trailing" id="mGM-Q8-8Z0"/>
                             <constraint firstAttribute="centerX" secondItem="7gP-W0-h1B" secondAttribute="centerX" id="mVm-Ey-zhI"/>
                             <constraint firstItem="TXo-la-IOf" firstAttribute="top" secondItem="NAh-8o-YoM" secondAttribute="bottom" id="x0X-4L-HAd"/>
+                            <constraint firstAttribute="trailing" secondItem="Nf6-2y-8FZ" secondAttribute="trailing" constant="10" id="xZs-Fh-SVP"/>
                             <constraint firstItem="JHR-q2-ETx" firstAttribute="top" secondItem="7gP-W0-h1B" secondAttribute="bottom" constant="10" id="xjs-dE-meg"/>
                             <constraint firstItem="JHR-q2-ETx" firstAttribute="leading" secondItem="FTN-cw-NEp" secondAttribute="trailing" constant="10" id="zak-v7-ZJp"/>
                             <constraint firstItem="7gP-W0-h1B" firstAttribute="top" secondItem="LW2-WB-sk2" secondAttribute="bottom" constant="15" id="zpj-3K-LkG"/>
@@ -563,6 +571,7 @@
                         <outlet property="lbArtist" destination="v5z-BR-ee6" id="h9T-vL-nhL"/>
                         <outlet property="lbComposer" destination="LW2-WB-sk2" id="5QF-70-ikS"/>
                         <outlet property="lbCurrent" destination="FTN-cw-NEp" id="LQM-LL-IFx"/>
+                        <outlet property="lbNo" destination="Nf6-2y-8FZ" id="kn2-xh-Qxo"/>
                         <outlet property="lbRemain" destination="5z5-gl-5dV" id="UaF-aV-e7k"/>
                         <outlet property="lbTotal" destination="Xfj-Pn-oft" id="Myj-1k-ybG"/>
                         <outlet property="slider" destination="Ayp-jB-hdd" id="3jD-j6-e7I"/>

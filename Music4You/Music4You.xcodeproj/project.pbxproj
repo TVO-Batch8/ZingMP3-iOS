@@ -30,6 +30,9 @@
 		989B6D8B1B4FCF0B005E742F /* Chart.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B6D8A1B4FCF0B005E742F /* Chart.m */; };
 		989B6D971B4FD1EC005E742F /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B6D961B4FD1EC005E742F /* CoreDataHelper.m */; };
 		98B2A5761B5AAF2B00BD6AB1 /* ChartSongListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2A5751B5AAF2B00BD6AB1 /* ChartSongListViewController.m */; };
+		98BC9AAE1B5B800D00B6CBFA /* america.png in Resources */ = {isa = PBXBuildFile; fileRef = 98BC9AAB1B5B800D00B6CBFA /* america.png */; };
+		98BC9AAF1B5B800D00B6CBFA /* korea.png in Resources */ = {isa = PBXBuildFile; fileRef = 98BC9AAC1B5B800D00B6CBFA /* korea.png */; };
+		98BC9AB01B5B800D00B6CBFA /* vietnam.png in Resources */ = {isa = PBXBuildFile; fileRef = 98BC9AAD1B5B800D00B6CBFA /* vietnam.png */; };
 		98C31AC71B54B6A800EC4D91 /* PlayMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C31AC61B54B6A800EC4D91 /* PlayMusicViewController.m */; };
 		98D5BD041B5740E00070DA40 /* SongListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D5BD031B5740E00070DA40 /* SongListViewController.m */; };
 		98D6835B1B56A4C80086E67D /* likeNo.png in Resources */ = {isa = PBXBuildFile; fileRef = 98D683581B56A4C80086E67D /* likeNo.png */; };
@@ -93,6 +96,9 @@
 		989B6D961B4FD1EC005E742F /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 		98B2A5741B5AAF2B00BD6AB1 /* ChartSongListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartSongListViewController.h; sourceTree = "<group>"; };
 		98B2A5751B5AAF2B00BD6AB1 /* ChartSongListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartSongListViewController.m; sourceTree = "<group>"; };
+		98BC9AAB1B5B800D00B6CBFA /* america.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = america.png; sourceTree = "<group>"; };
+		98BC9AAC1B5B800D00B6CBFA /* korea.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = korea.png; sourceTree = "<group>"; };
+		98BC9AAD1B5B800D00B6CBFA /* vietnam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vietnam.png; sourceTree = "<group>"; };
 		98C31AC51B54B6A800EC4D91 /* PlayMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayMusicViewController.h; sourceTree = "<group>"; };
 		98C31AC61B54B6A800EC4D91 /* PlayMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayMusicViewController.m; sourceTree = "<group>"; };
 		98D5BD021B5740E00070DA40 /* SongListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongListViewController.h; sourceTree = "<group>"; };
@@ -158,6 +164,9 @@
 		9895CE171B54CA1100E1CD32 /* ControlIcon */ = {
 			isa = PBXGroup;
 			children = (
+				98BC9AAB1B5B800D00B6CBFA /* america.png */,
+				98BC9AAC1B5B800D00B6CBFA /* korea.png */,
+				98BC9AAD1B5B800D00B6CBFA /* vietnam.png */,
 				985776561B5A04AE000246C4 /* loading.png */,
 				98D683581B56A4C80086E67D /* likeNo.png */,
 				98D683591B56A4C80086E67D /* likeYes.png */,
@@ -453,6 +462,7 @@
 				9895CE2C1B54CA4900E1CD32 /* repeatYes.png in Resources */,
 				9895CE2F1B54CA4900E1CD32 /* shuffleYes.png in Resources */,
 				9895CE2B1B54CA4900E1CD32 /* repeatNo.png in Resources */,
+				98BC9AAF1B5B800D00B6CBFA /* korea.png in Resources */,
 				9895CE301B54CA4900E1CD32 /* stop.png in Resources */,
 				9895CE2E1B54CA4900E1CD32 /* shuffleNo.png in Resources */,
 				9895CE2A1B54CA4900E1CD32 /* prev.png in Resources */,
@@ -464,8 +474,10 @@
 				98F8308C1B5AC6BD0039CC24 /* ChartTableViewCell.xib in Resources */,
 				9895CE321B54CA4900E1CD32 /* volumeLow.png in Resources */,
 				9895CE271B54CA4900E1CD32 /* next.png in Resources */,
+				98BC9AAE1B5B800D00B6CBFA /* america.png in Resources */,
 				9895CE281B54CA4900E1CD32 /* pause.png in Resources */,
 				98DF58A41B4D848A00F3099D /* LaunchScreen.xib in Resources */,
+				98BC9AB01B5B800D00B6CBFA /* vietnam.png in Resources */,
 				98D6835B1B56A4C80086E67D /* likeNo.png in Resources */,
 				9895CE261B54CA4900E1CD32 /* mute.png in Resources */,
 				98D6835C1B56A4C80086E67D /* likeYes.png in Resources */,

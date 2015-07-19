@@ -21,6 +21,7 @@
 @property (strong, nonatomic) AutoScrollLabel *autoScrollLabelComposer;
 @property (weak, nonatomic) IBOutlet UILabel *lbArtist;
 @property (weak, nonatomic) IBOutlet UILabel *lbComposer;
+@property (weak, nonatomic) IBOutlet UILabel *lbNo;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnShuffle;
 @property (weak, nonatomic) IBOutlet UIButton *btnRepeat;
@@ -142,20 +143,16 @@
     //self.song = [[AVPlayer alloc] initWithURL:urlAudio];
     [self.song play];
     
+    [self.lbNo setText:[NSString stringWithFormat:@"%d/%d", self.currentIndex + 1, self.arraySong.count]];
     NSString *title = [currentSong objectAtIndex:1];
     [self.navigationItem setTitle:title];
     
-    //[self.autoScrollLabelTitle setText:title];
+    
     NSString *artist = [currentSong objectAtIndex:2];
     [self.lbArtist setText:artist];
-    //[self.autoScrollLabelArtist setText:artist];
+    
     NSString *composer = [currentSong objectAtIndex:4];
     [self.lbComposer setText:composer];
-    //[self.autoScrollLabelComposer setText:composer];
-    
-    //[self.navigationController.navigationBar addSubview:self.autoScrollLabelTitle];
-    //[self.lbArtist addSubview:self.autoScrollLabelArtist];
-    //[self.lbComposer addSubview:self.autoScrollLabelComposer];
     
     NSString *avatar = [currentSong objectAtIndex:3];
     
@@ -220,7 +217,16 @@
             } else if ([self.btnShuffle isSelected]) {
                 [self handlingShuffle];
             } else {
-                [self btnNextTouched:self];
+                [self.song pause];
+                [self.slider setValue:0 animated:YES];
+                [self.btnPause setSelected:NO];
+                
+                if (self.currentIndex < self.arraySong.count - 1) {
+                    self.currentIndex += 1;
+                } else {
+                    self.currentIndex = 0;
+                }
+                [self playSong];;
             }
         }
     }

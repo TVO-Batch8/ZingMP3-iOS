@@ -60,6 +60,14 @@
     }
     Chart *chart = [self.arrayChart objectAtIndex:indexPath.row];
     [cell.textLabel setText:chart.chartName];
+    
+    if ([chart.chartName isEqualToString:@"VIỆT NAM"]) {
+        [cell.imageView setImage:[UIImage imageNamed:@"vietnam.png"]];
+    } else if([chart.chartName isEqualToString:@"ÂU MỸ"]) {
+        [cell.imageView setImage:[UIImage imageNamed:@"america.png"]];
+    } else {
+        [cell.imageView setImage:[UIImage imageNamed:@"korea.png"]];
+    }
     return cell;
 }
 
