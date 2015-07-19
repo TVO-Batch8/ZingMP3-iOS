@@ -10,10 +10,38 @@
 
 @interface AppDelegate ()
 @property (strong, nonatomic) CoreDataHelper *coreDataHelper;
+@property (strong, nonatomic) PlayMusicViewController *pvc;
 @end
 
 @implementation AppDelegate
 
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Override point for customization after application launch.
+    self.coreDataHelper = [[CoreDataHelper alloc] init];
+    self.coreDataHelper.context = [self managedObjectContext];
+    self.playVC = self.pvc;
+    // create Genre data
+    [self prepareGenreDataForApp];
+    NSLog(@"Genres and SubGenres are available");
+    
+    // create Chart data
+    if ([self prepareChartDataForApp]) {
+        NSLog(@"Charts are available");
+    } else {
+        NSLog(@"Error to creating Charts!");
+    }
+    
+    // init an instance of song player
+    self.song = [[AVPlayer alloc] init];
+    
+    [self incomingCallHandling];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkStatusNotification:) name:kReachabilityChangedNotification object:nil];
+    self.reachability = [Reachability reachabilityForInternetConnection];
+    [self.reachability startNotifier];
+    return YES;
+}
 // prepare Genre and SubGenre data for App if no Genre and SubGenre data available
 - (void) prepareGenreDataForApp {
     
@@ -285,32 +313,7 @@
     }
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    self.coreDataHelper = [[CoreDataHelper alloc] init];
-    self.coreDataHelper.context = [self managedObjectContext];
-    
-    // create Genre data
-    [self prepareGenreDataForApp];
-    NSLog(@"Genres and SubGenres are available");
-    
-    // create Chart data
-    if ([self prepareChartDataForApp]) {
-        NSLog(@"Charts are available");
-    } else {
-        NSLog(@"Error to creating Charts!");
-    }
-    
-    // init an instance of song player
-    self.song = [[AVPlayer alloc] init];
-    
-    [self incomingCallHandling];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkStatusNotification:) name:kReachabilityChangedNotification object:nil];
-    self.reachability = [Reachability reachabilityForInternetConnection];
-    [self.reachability startNotifier];
-    return YES;
-}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

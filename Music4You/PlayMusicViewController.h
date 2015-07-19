@@ -23,4 +23,10 @@
 @property (nonatomic) int currentIndex;
 @property (nonatomic) BOOL isPlayingSongSelected;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnPrevBackground;
+@property (weak, nonatomic) IBOutlet UIButton *btnPauseBackground;
+@property (weak, nonatomic) IBOutlet UIButton *btnNextBackground;
+
+@property (weak, nonatomic) IBOutlet UIView *moveView;
+
 @end

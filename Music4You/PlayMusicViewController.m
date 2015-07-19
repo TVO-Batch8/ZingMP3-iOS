@@ -8,7 +8,9 @@
 
 #import "PlayMusicViewController.h"
 
-@interface PlayMusicViewController ()
+@interface PlayMusicViewController () {
+    CGPoint touchedPoint;
+}
 
 @property (strong, nonatomic) CoreDataHelper *coreDataHelper;
 
@@ -46,6 +48,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [[UIApplication sharedApplication].keyWindow addSubview:self.moveView];
+    
     self.coreDataHelper = [[CoreDataHelper alloc] init];
     self.managedObjectContext = [self managedObjectContext];
     self.coreDataHelper.context = self.managedObjectContext;
@@ -67,6 +71,11 @@
     self.autoScrollLabelComposer = [[AutoScrollLabel alloc] initWithFrame:CGRectMake(10, 15, 320, 16)];
     [self.autoScrollLabelComposer setTextColor:[UIColor blueColor]];
     
+    // Pan gesture recognizer
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePansGesture:)];
+    panGesture.minimumNumberOfTouches = 1;
+    panGesture.maximumNumberOfTouches = 1;
+    [self.moveView addGestureRecognizer:panGesture];
     
 }
 
@@ -108,8 +117,9 @@
     [self.btnShuffle setImage:[UIImage imageNamed:@"shuffleYes.png"] forState:UIControlStateSelected];
     [self.btnRepeat setImage:[UIImage imageNamed:@"repeatYes.png"] forState:UIControlStateSelected];
     [self.btnPause setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateSelected];
+    [self.btnPauseBackground setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateSelected];
     
-    
+    [self.moveView setHidden:YES];
     
     [self playSong];
 }
@@ -117,10 +127,14 @@
 - (void)viewDidAppear:(BOOL)animated {
     if (self.song.rate != 1.0f) {
         [self.btnPause setSelected:YES];
+        [self.btnPauseBackground setSelected:YES];
         //[self.iVAvatar.layer removeAnimationForKey:@"Spin"];
     }
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [self.moveView setHidden:YES];
+}
 // begin spin avatar
 - (void) beginSpinAvatar {
     CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
@@ -141,7 +155,7 @@
     AVPlayerItem *playerItem = [[AVPlayerItem alloc] initWithURL:urlAudio];
     [self.song replaceCurrentItemWithPlayerItem:playerItem];
     //self.song = [[AVPlayer alloc] initWithURL:urlAudio];
-    [self.song play];
+    
     
     [self.lbNo setText:[NSString stringWithFormat:@"%d/%d", self.currentIndex + 1, self.arraySong.count]];
     NSString *title = [currentSong objectAtIndex:1];
@@ -188,7 +202,7 @@
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateSliderValue) userInfo:nil repeats:YES];
     //self.slider.minimumValue = 0;
     self.slider.maximumValue = CMTimeGetSeconds(self.song.currentItem.asset.duration);
-    
+    [self.song play];
 }
 
 // update slider value with song's current time
@@ -212,7 +226,6 @@
             
             // repeat condition
             if ([self.btnRepeat isSelected]) {
-                //[self btnStopTouched:self];
                 [self playSong];
             } else if ([self.btnShuffle isSelected]) {
                 [self handlingShuffle];
@@ -220,6 +233,7 @@
                 [self.song pause];
                 [self.slider setValue:0 animated:YES];
                 [self.btnPause setSelected:NO];
+                [self.btnPauseBackground setSelected:YES];
                 
                 if (self.currentIndex < self.arraySong.count - 1) {
                     self.currentIndex += 1;
@@ -249,6 +263,7 @@
     if (self.btnPause.isSelected == NO) {
         [self.song play];
         [self.btnPause setSelected:NO];
+        [self.btnPauseBackground setSelected:NO];
     }
     
 }
@@ -256,6 +271,8 @@
 - (IBAction)btnPrevTouched:(id)sender {
     [self.song pause];
     [self.btnPause setSelected:NO];
+    [self.btnPauseBackground setSelected:NO];
+
     //[self.slider setValue:0 animated:YES];
     if (self.currentIndex > 0) {
         self.currentIndex -= 1;
@@ -267,6 +284,7 @@
 
 - (IBAction)btnPauseTouched:(id)sender {
     [self.btnPause setSelected:!self.btnPause.isSelected];
+    [self.btnPauseBackground setSelected:!self.btnPauseBackground.isSelected];
     if (self.song.rate == 1.0f) {
         [self.song pause];
         [self.iVAvatar.layer removeAnimationForKey:@"Spin"];
@@ -278,6 +296,7 @@
 
 - (IBAction)btnStopTouched:(id)sender {
     [self.btnPause setSelected:YES];
+    [self.btnPauseBackground setSelected:YES];
     [self.song pause];
     [self.slider setValue:0 animated:YES];
     [self.song seekToTime:CMTimeMake(self.slider.value, 1)];
@@ -288,6 +307,7 @@
     [self.song pause];
     [self.slider setValue:0 animated:YES];
     [self.btnPause setSelected:NO];
+    [self.btnPauseBackground setSelected:NO];
     
     if (self.currentIndex < self.arraySong.count - 1) {
         self.currentIndex += 1;
@@ -343,6 +363,7 @@
     [self.song pause];
     [self.slider setValue:0 animated:YES];
     [self.btnPause setSelected:NO];
+    [self.btnPauseBackground setSelected:NO];
     int randomIndex = 0;
     
     do {
@@ -385,7 +406,64 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)btnPrevBackgroundTouched:(id)sender {
+    [self.song pause];
+    [self.btnPause setSelected:NO];
+    [self.btnPauseBackground setSelected:NO];
+    if (self.currentIndex > 0) {
+        self.currentIndex -= 1;
+    } else {
+        self.currentIndex = (int)self.arraySong.count - 1;
+    }
+    [self playSong];
+}
 
+
+- (IBAction)btnPauseBackgroundTouched:(id)sender {
+    [self.btnPause setSelected:!self.btnPause.isSelected];
+    [self.btnPauseBackground setSelected:!self.btnPauseBackground.isSelected];
+    if (self.song.rate == 1.0f) {
+        [self.song pause];
+        [self.iVAvatar.layer removeAnimationForKey:@"Spin"];
+    } else {
+        [self.song play];
+        [self beginSpinAvatar];
+    }
+}
+- (IBAction)btnNextBackgroundTouched:(id)sender {
+    [self.song pause];
+    [self.slider setValue:0 animated:YES];
+    [self.btnPause setSelected:NO];
+    [self.btnPauseBackground setSelected:NO];
+    
+    if (self.currentIndex < self.arraySong.count - 1) {
+        self.currentIndex += 1;
+    } else {
+        self.currentIndex = 0;
+    }
+    [self playSong];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+}
+- (void)handlePansGesture:(UIPanGestureRecognizer *)paramGesture {
+    UIView *view = paramGesture.view;
+    CGPoint currentTouch = [paramGesture locationInView:self.view];
+    if (view == self.moveView) {
+        if (paramGesture.state == UIGestureRecognizerStateBegan) {
+            touchedPoint = CGPointMake(view.center.x - currentTouch.x,view.center.y - currentTouch.y);
+        } else if (paramGesture.state != UIGestureRecognizerStateCancelled && paramGesture.state != UIGestureRecognizerStateFailed) {
+            view.center = CGPointMake(currentTouch.x + touchedPoint.x, currentTouch.y + touchedPoint.y);
+        }
+    }
+}
 /*
 #pragma mark - Navigation
 

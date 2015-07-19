@@ -11,6 +11,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "CoreDataHelper.h"
 #import "Reachability.h"
+#import "SongListViewController.h"
+
 @import CoreTelephony;
 
 
@@ -25,6 +27,7 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
+@property (strong, nonatomic) id playVC;
 @property  (strong, nonatomic) AVPlayer *song;
 @property (strong, nonatomic) Reachability *reachability;
 @end
