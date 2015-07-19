@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //self.playMusicVC = ((AppDelegate *)([UIApplication sharedApplication].delegate)).playVC;
+    self.playMusicVC = ((AppDelegate *)([UIApplication sharedApplication].delegate)).playVC;
     [self.indicator setTransform:CGAffineTransformMakeScale(3, 3)];
     self.arraySong = [NSMutableArray array];
     [self requestJsonDataWithChartID:self.chartID];
