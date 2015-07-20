@@ -66,7 +66,11 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 20;
+    return 30;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -79,6 +83,7 @@
     NSArray *subGenres = [self.coreDataHelper querySubGenresWithGenreID:genre.genreID];
     SubGenre *subGenre = [subGenres objectAtIndex:indexPath.row];
     [cell.textLabel setText:subGenre.subGenreName];
+    [cell.imageView setImage:[UIImage imageNamed:@"music.png"]];
     return cell;
 }
 

@@ -11,6 +11,7 @@
 		9801ECA51B535FBB003D51A2 /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = 9801ECA41B535FBB003D51A2 /* Genre.m */; };
 		985776571B5A04AE000246C4 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 985776561B5A04AE000246C4 /* loading.png */; };
 		9872ED5E1B5A594D006C5E42 /* AutoScrollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9872ED5D1B5A594D006C5E42 /* AutoScrollLabel.m */; };
+		9877AD141B5CA9B6005E6F4F /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = 9877AD131B5CA9B6005E6F4F /* music.png */; };
 		9887626C1B57FD4B00685515 /* Favourite.m in Sources */ = {isa = PBXBuildFile; fileRef = 9887626B1B57FD4B00685515 /* Favourite.m */; };
 		98944BC21B5B3BB5007D972B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 98944BC11B5B3BB5007D972B /* Reachability.m */; };
 		9895CE261B54CA4900E1CD32 /* mute.png in Resources */ = {isa = PBXBuildFile; fileRef = 9895CE181B54CA4900E1CD32 /* mute.png */; };
@@ -72,6 +73,7 @@
 		985776561B5A04AE000246C4 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		9872ED5C1B5A594D006C5E42 /* AutoScrollLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoScrollLabel.h; sourceTree = "<group>"; };
 		9872ED5D1B5A594D006C5E42 /* AutoScrollLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoScrollLabel.m; sourceTree = "<group>"; };
+		9877AD131B5CA9B6005E6F4F /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
 		9887626A1B57FD4B00685515 /* Favourite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favourite.h; sourceTree = "<group>"; };
 		9887626B1B57FD4B00685515 /* Favourite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Favourite.m; sourceTree = "<group>"; };
 		98944BC01B5B3BB5007D972B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		9895CE171B54CA1100E1CD32 /* ControlIcon */ = {
 			isa = PBXGroup;
 			children = (
+				9877AD131B5CA9B6005E6F4F /* music.png */,
 				98BC9AAB1B5B800D00B6CBFA /* america.png */,
 				98BC9AAC1B5B800D00B6CBFA /* korea.png */,
 				98BC9AAD1B5B800D00B6CBFA /* vietnam.png */,
@@ -479,6 +482,7 @@
 				98DF58A41B4D848A00F3099D /* LaunchScreen.xib in Resources */,
 				98BC9AB01B5B800D00B6CBFA /* vietnam.png in Resources */,
 				98D6835B1B56A4C80086E67D /* likeNo.png in Resources */,
+				9877AD141B5CA9B6005E6F4F /* music.png in Resources */,
 				9895CE261B54CA4900E1CD32 /* mute.png in Resources */,
 				98D6835C1B56A4C80086E67D /* likeYes.png in Resources */,
 				9895CE351B54EE8F00E1CD32 /* default_avatar.png in Resources */,
