@@ -29,6 +29,7 @@
     self.arrayGenres = [NSMutableArray arrayWithArray:[self.coreDataHelper fetchAllGenre]];
     self.arraySubGenres = [NSMutableArray arrayWithArray:[self.coreDataHelper fetchAllSubGenre]];
     [self.tableGenre setBounces:NO];
+    
     NSLog(@"Genre APIs: %@", [APIs getAPIsSubGenreDetailWithID:@"IWZ9Z08E" onPage:@"1"]);
     // Do any additional setup after loading the view.
     
@@ -66,12 +67,18 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30;
+    return 50;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80;
 }
+
+//- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    UIView *viewHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
+//    [viewHeader setBackgroundColor:[UIColor greenColor]];
+//    return viewHeader;
+//}
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:genreCellID];

@@ -669,7 +669,7 @@
         <!--Genre View Controller-->
         <scene sceneID="Vlt-1d-K0s">
             <objects>
-                <viewController id="4eA-HK-qC7" customClass="GenreViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="4eA-HK-qC7" customClass="GenreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qya-rZ-eMB"/>
                         <viewControllerLayoutGuide type="bottom" id="Wfb-DB-Jm5"/>
