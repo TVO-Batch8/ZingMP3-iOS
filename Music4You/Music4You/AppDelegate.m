@@ -289,9 +289,8 @@
         case NotReachable: {
             [self.song pause];
             statusString = @"Not Reachable";
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:statusString message:@"Check your internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
-            [alertView show];
-            
+            UIAlertView *alertViewDisconnect = [[UIAlertView alloc] initWithTitle:statusString message:@"Check your internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+            [alertViewDisconnect show];
         }
             break;
 //        case ReachableViaWiFi:
@@ -301,8 +300,14 @@
 //            statusString = @"WWAN";
 //            break;
 //            
-        default:
+        default: {
+            UIAlertView *alertViewConnect = [[UIAlertView alloc] initWithTitle:nil message:@"Connected!" delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
+            [alertViewConnect show];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [alertViewConnect dismissWithClickedButtonIndex:0 animated:YES];
+            });
             break;
+        }
     }
     
 }
