@@ -5,7 +5,7 @@
 //  Created by abtranbn on 7/10/15.
 //  Copyright (c) 2015 Peter Pike. All rights reserved.
 //
-
+//#import "Reachability.h"
 #import "GenreViewController.h"
 #import "SongListViewController.h"
 
@@ -96,7 +96,13 @@
 
 #pragma mark - UITableView Delegate
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"segueGenre" sender:self];
+    if ([self isConnected]) {
+        [self performSegueWithIdentifier:@"segueGenre" sender:self];
+    } else {
+        UIAlertView *alertNotConnected = [[UIAlertView alloc] initWithTitle:nil message:@"Not connected!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+        [alertNotConnected show];
+    }
+    
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -111,6 +117,19 @@
         songListVC.stringSubGenreName = subGenre.subGenreName;
         songListVC.downloadedData = nil;
         [songListVC.arraySong removeAllObjects];
+    }
+}
+
+// check the connection
+- (BOOL)isConnected {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return networkStatus != NotReachable;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: UIApplicationOpenSettingsURLString]];
     }
 }
 /*

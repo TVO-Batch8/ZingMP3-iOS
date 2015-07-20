@@ -72,8 +72,6 @@
             [self.indicator stopAnimating];
             [self.tableSong setHidden:YES];
             [self.lbNoData setHidden:NO];
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Can't load data! Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
-            [alertView show];
             NSLog(@"No data founded");
             [connection cancel];
             return;
@@ -179,7 +177,12 @@
 
 #pragma mark - UITableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"segueGenrePlay" sender:self];
+    if ([self isConnected]) {
+        [self performSegueWithIdentifier:@"segueGenrePlay" sender:self];
+    } else {
+        UIAlertView *alertNotConnected = [[UIAlertView alloc] initWithTitle:nil message:@"Not connected!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+        [alertNotConnected show];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -194,6 +197,14 @@
         self.playMusicVC.currentIndex = selectedIndex;
     }
 }
+
+// check the connection
+- (BOOL)isConnected {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return networkStatus != NotReachable;
+}
+
 /*
  #pragma mark - Navigation
  

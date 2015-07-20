@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "APIs.h"
 #import "CoreDataHelper.h"
+
 #define genreCellID @"genreCellID"
 
-@interface GenreViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface GenreViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -20,4 +21,5 @@
 @property (strong, nonatomic) NSMutableArray *arrayGenres;
 @property (strong, nonatomic) NSMutableArray *arraySubGenres;
 
+- (BOOL) isConnected;
 @end
