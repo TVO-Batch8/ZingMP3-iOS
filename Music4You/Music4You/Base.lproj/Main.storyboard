@@ -10,6 +10,7 @@
             <objects>
                 <tabBarController title="Music4You" id="gcE-2S-M1Q" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ghl-zu-AVV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -24,13 +25,14 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fm9-db-vBL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1837" y="463"/>
+            <point key="canvasLocation" x="-1541" y="1019"/>
         </scene>
         <!--Favourites-->
         <scene sceneID="WDS-Jh-jxE">
             <objects>
                 <navigationController id="DOm-LF-B45" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favourites" id="SoB-4t-sa0"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="s0G-WZ-Bh3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -41,7 +43,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rPk-AS-Fzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1081" y="1702"/>
+            <point key="canvasLocation" x="-1081" y="1436"/>
         </scene>
         <!--Favourites View Controller-->
         <scene sceneID="qzu-nV-kro">
@@ -52,17 +54,17 @@
                         <viewControllerLayoutGuide type="bottom" id="RQk-Uv-t75"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Uhb-Sb-bQL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favourite" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phs-QI-7Bq">
-                                <rect key="frame" x="251" y="290" width="98.5" height="20.5"/>
+                                <rect key="frame" x="111" y="230" width="98.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9Zg-Ga-xPt">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="25Q-43-brJ" id="y98-XU-JS4"/>
@@ -81,6 +83,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="99w-2e-FZR"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="lbNoFavourite" destination="Phs-QI-7Bq" id="FiM-rS-LkL"/>
                         <outlet property="tableFavourite" destination="9Zg-Ga-xPt" id="COg-df-fck"/>
@@ -89,13 +92,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zGB-Bz-6if" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-353" y="1693"/>
+            <point key="canvasLocation" x="-691" y="1436"/>
         </scene>
         <!--Search-->
         <scene sceneID="1GS-cZ-qXR">
             <objects>
                 <navigationController id="m9L-Ru-SdL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" id="OYf-Qv-cHR"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="a9c-g0-gZQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -113,6 +117,7 @@
             <objects>
                 <navigationController id="HdN-eD-JKi" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Charts" id="Jxb-ct-1zB"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b92-1g-GlY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -123,7 +128,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ktJ-YL-JnN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1081" y="1000"/>
+            <point key="canvasLocation" x="-1081" y="892"/>
         </scene>
         <!--Charts View Controller-->
         <scene sceneID="fiu-4x-1MK">
@@ -134,11 +139,11 @@
                         <viewControllerLayoutGuide type="bottom" id="pG3-mY-Y8B"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2bu-Vd-vuq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uUm-jn-9Ed">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Km0-b3-zzA" id="yn9-C8-3Vh"/>
@@ -155,6 +160,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kFH-U8-sp5"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="tableChart" destination="uUm-jn-9Ed" id="7Hh-Qc-aDO"/>
                         <segue destination="uLf-EJ-xku" kind="show" identifier="segueChart" id="GwA-Nn-Gat"/>
@@ -162,7 +168,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3jx-ZC-vDk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-363" y="1000"/>
+            <point key="canvasLocation" x="-691" y="892"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -173,18 +179,18 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="WfT-ja-b0n">
-                                <rect key="frame" x="265" y="265" width="70" height="70"/>
+                                <rect key="frame" x="125" y="205" width="70" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="8YA-ob-sXK"/>
                                     <constraint firstAttribute="width" constant="70" id="r7T-gM-hfN"/>
                                 </constraints>
                             </activityIndicatorView>
                             <searchBar contentMode="redraw" placeholder="Enter your text to search" showsSearchResultsButton="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7St-cM-Yi9">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="CyH-TX-6e5"/>
                                 </constraints>
@@ -198,7 +204,7 @@
                                 </connections>
                             </searchBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5Ib-FW-g03">
-                                <rect key="frame" x="0.0" y="108" width="600" height="31"/>
+                                <rect key="frame" x="0.0" y="108" width="320" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="egM-Nf-t4g"/>
                                 </constraints>
@@ -213,7 +219,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="36v-EJ-Jmr">
-                                <rect key="frame" x="0.0" y="138" width="600" height="413"/>
+                                <rect key="frame" x="0.0" y="138" width="320" height="293"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="6fP-GG-btz"/>
@@ -221,7 +227,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPE-5t-aNk">
-                                <rect key="frame" x="270" y="290" width="60.5" height="20"/>
+                                <rect key="frame" x="130" y="230" width="60.5" height="20"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -246,6 +252,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hhT-Fv-egk"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="indicator" destination="WfT-ja-b0n" id="KTm-Ct-gCF"/>
                         <outlet property="lbNoData" destination="SPE-5t-aNk" id="cJz-8h-mze"/>
@@ -257,7 +264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-353" y="333"/>
+            <point key="canvasLocation" x="-691" y="339"/>
         </scene>
         <!--Song List View Controller-->
         <scene sceneID="Kg3-oE-BL1">
@@ -268,20 +275,20 @@
                         <viewControllerLayoutGuide type="bottom" id="NZD-HV-31f"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cba-zh-Bmt">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="VvY-b4-LUy">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <rect key="frame" x="150" y="230" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can't load data!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6K-HY-1WS">
-                                <rect key="frame" x="239" y="290" width="122.5" height="20.5"/>
+                                <rect key="frame" x="99" y="230" width="122.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uWD-2Z-Qa8">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BXE-yd-8VN" id="fdO-AE-Cjf"/>
@@ -302,6 +309,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JU8-Il-hKN"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="indicator" destination="VvY-b4-LUy" id="gsO-le-o5I"/>
                         <outlet property="lbNoData" destination="C6K-HY-1WS" id="4Jl-Sb-UpF"/>
@@ -311,7 +319,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byk-9T-Z1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="357" y="-362"/>
+            <point key="canvasLocation" x="-309" y="-234"/>
         </scene>
         <!--Chart Song List View Controller-->
         <scene sceneID="Ex2-1U-HZs">
@@ -322,14 +330,14 @@
                         <viewControllerLayoutGuide type="bottom" id="F5U-DW-2da"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KgL-fy-Dba">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="arv-oG-1Xz">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <rect key="frame" x="150" y="230" width="20" height="20"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yiG-ab-Ova">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="uLf-EJ-xku" id="Rxd-Wo-23v"/>
@@ -337,7 +345,7 @@
                                 </connections>
                             </tableView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can't load data!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnQ-8J-lZ2">
-                                <rect key="frame" x="239" y="290" width="122.5" height="20.5"/>
+                                <rect key="frame" x="99" y="230" width="122.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -355,6 +363,7 @@
                             <constraint firstItem="yiG-ab-Ova" firstAttribute="leading" secondItem="KgL-fy-Dba" secondAttribute="leading" id="zcU-OP-wFP"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="indicator" destination="arv-oG-1Xz" id="K76-c9-xZi"/>
                         <outlet property="lbNoData" destination="hnQ-8J-lZ2" id="NmD-lU-2mn"/>
@@ -364,7 +373,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mdz-xL-Yab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="313" y="1000"/>
+            <point key="canvasLocation" x="-309" y="892"/>
         </scene>
         <!--Play Music View Controller-->
         <scene sceneID="EeF-Qn-E1h">
@@ -655,7 +664,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUg-eS-sXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="280" y="324"/>
+            <point key="canvasLocation" x="-309" y="346"/>
         </scene>
         <!--Genre View Controller-->
         <scene sceneID="Vlt-1d-K0s">
@@ -666,11 +675,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Wfb-DB-Jm5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RxO-mg-tJY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="UVc-ES-jHz">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="4eA-HK-qC7" id="dt3-0V-sQt"/>
@@ -687,6 +696,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zM4-Ex-Scs"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="tableGenre" destination="UVc-ES-jHz" id="hQH-YN-aAJ"/>
                         <segue destination="BXE-yd-8VN" kind="show" identifier="segueGenre" id="BMV-Pb-iBE"/>
@@ -694,13 +704,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jsZ-jN-8JS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-363" y="-356"/>
+            <point key="canvasLocation" x="-691" y="-234"/>
         </scene>
         <!--Genre-->
         <scene sceneID="Twa-Ax-r8V">
             <objects>
                 <navigationController id="aOb-4w-Jqg" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Genre" id="xyx-se-CHw"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hcw-5I-xO6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -711,7 +722,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPo-wT-N8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1067" y="-356"/>
+            <point key="canvasLocation" x="-1081" y="-234"/>
         </scene>
     </scenes>
     <resources>
@@ -725,6 +736,6 @@
         <image name="stop.png" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Nt5-3j-eYO"/>
+        <segue reference="0BQ-WG-03U"/>
     </inferredMetricsTieBreakers>
 </document>
