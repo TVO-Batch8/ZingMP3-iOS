@@ -10,6 +10,7 @@
 
 @interface ChartSongListViewController ()
 @property (strong, nonatomic) PlayMusicViewController *playMusicVC;
+@property (weak, nonatomic) IBOutlet UILabel *lbNoData;
 @end
 
 @implementation ChartSongListViewController
@@ -59,7 +60,10 @@
         if (self.arraySong.count == 0) {
             [self.indicator stopAnimating];
             [self.tableSong setHidden:YES];
+            [self.lbNoData setHidden:NO];
             NSLog(@"No data founded");
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Can't load data! Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+            [alertView show];
             [connection cancel];
             return;
         }
@@ -68,6 +72,7 @@
             [self.indicator stopAnimating];
             [self.tableSong reloadData];
             [self.tableSong setHidden:NO];
+            [self.lbNoData setHidden:YES];
             [connection cancel];
             return;
         }
@@ -112,6 +117,13 @@
     }
     NSLog(@"***** end parseJson **********\n\n");
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }
+}
+
 #pragma mark - UITableView datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -156,7 +168,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     int selectedIndex = (int)self.tableSong.indexPathForSelectedRow.row;
-    if ([segue.identifier isEqualToString:@"segueChartPlay"]) {
+    
+    if ([segue.destinationViewController isKindOfClass:[PlayMusicViewController class]]) {
         self.playMusicVC = (PlayMusicViewController *)segue.destinationViewController;
         
         
@@ -165,6 +178,16 @@
         self.playMusicVC.arraySong = self.arraySong;
         self.playMusicVC.currentIndex = selectedIndex;
     }
+    
+//    if ([segue.identifier isEqualToString:@"segueChartPlay"]) {
+//        self.playMusicVC = (PlayMusicViewController *)segue.destinationViewController;
+//        
+//        
+//        self.playMusicVC.isPlayingSongSelected = NO;
+//        
+//        self.playMusicVC.arraySong = self.arraySong;
+//        self.playMusicVC.currentIndex = selectedIndex;
+//    }
 }/*
 #pragma mark - Navigation
 

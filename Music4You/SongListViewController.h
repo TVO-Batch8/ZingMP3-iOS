@@ -11,7 +11,7 @@
 #import "PlayMusicViewController.h"
 #define songCellID @"songCellID"
 
-@interface SongListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
+@interface SongListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableSong;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 

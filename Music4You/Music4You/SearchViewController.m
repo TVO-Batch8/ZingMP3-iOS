@@ -105,6 +105,8 @@
             [self.indicator stopAnimating];
             [self.lbNoData setHidden:NO];
             [self.tableSearch setHidden:YES];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"No result! Check your search key or internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+            [alertView show];
             NSLog(@"No data founded");
             [connection cancel];
             return;
@@ -169,6 +171,12 @@
         [self.arraySong addObject:array];
     }
     NSLog(@"***** end parseJson **********\n\n");
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }
 }
 
 #pragma mark - UITableView Datasource

@@ -49,7 +49,7 @@
     NSLog(@"String page: %@", page);
     
     
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[APIs getAPIsSubGenreDetailWithID:subGenreID onPage:page]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[APIs getAPIsSubGenreDetailWithID:subGenreID onPage:page]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:theRequest delegate:self];
     
     [connection start];
@@ -71,6 +71,8 @@
         if (self.arraySong.count == 0) {
             [self.indicator stopAnimating];
             [self.tableSong setHidden:YES];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Can't load data! Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+            [alertView show];
             NSLog(@"No data founded");
             [connection cancel];
             return;
@@ -126,6 +128,12 @@
         [self.arraySong addObject:array];
     }
     NSLog(@"***** end parseJson **********\n\n");
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }
 }
 
 #pragma mark - UITableView datasource

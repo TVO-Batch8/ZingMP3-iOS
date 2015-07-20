@@ -289,7 +289,7 @@
         case NotReachable: {
             [self.song pause];
             statusString = @"Not Reachable";
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:statusString message:@"Check your internet connection" delegate:self cancelButtonTitle:@"Settings" otherButtonTitles: nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:statusString message:@"Check your internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
             [alertView show];
             
         }
@@ -308,7 +308,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
+    if (buttonIndex == 1) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString: UIApplicationOpenSettingsURLString]];
     }
 }

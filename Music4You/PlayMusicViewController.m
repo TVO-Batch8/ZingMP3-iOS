@@ -133,7 +133,7 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [self.moveView setHidden:YES];
+    [self.moveView setHidden:NO];
 }
 // begin spin avatar
 - (void) beginSpinAvatar {
@@ -215,9 +215,7 @@
     //NSLog(@"Played %d - Remain -%d  ",(int)playTime, (int)remain);
     [self.lbCurrent setText:[NSString stringWithFormat:@"%@", [self timeFormat:playTime]]];
     [self.lbRemain setText:[NSString stringWithFormat:@"-%@", [self timeFormat:remain]]];
-    
-    
-    
+ 
     
     if(remain <= 1){
         if(self.timer) {
