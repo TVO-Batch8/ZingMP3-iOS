@@ -173,6 +173,7 @@
     NSLog(@"***** end parseJson **********\n\n");
 }
 
+// handling alertView
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         [self.searchBar becomeFirstResponder];
