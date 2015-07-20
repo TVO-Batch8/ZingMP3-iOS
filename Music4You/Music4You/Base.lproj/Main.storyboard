@@ -27,11 +27,13 @@
             </objects>
             <point key="canvasLocation" x="-1541" y="1019"/>
         </scene>
-        <!--Favourites-->
+        <!--Favourite-->
         <scene sceneID="WDS-Jh-jxE">
             <objects>
                 <navigationController id="DOm-LF-B45" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favourites" id="SoB-4t-sa0"/>
+                    <tabBarItem key="tabBarItem" title="Favourite" image="favourite.png" id="SoB-4t-sa0">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
+                    </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="s0G-WZ-Bh3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -98,7 +100,9 @@
         <scene sceneID="1GS-cZ-qXR">
             <objects>
                 <navigationController id="m9L-Ru-SdL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" id="OYf-Qv-cHR"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="search.png" id="OYf-Qv-cHR">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
+                    </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="a9c-g0-gZQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -112,11 +116,13 @@
             </objects>
             <point key="canvasLocation" x="-1081" y="339"/>
         </scene>
-        <!--Charts-->
+        <!--Chart-->
         <scene sceneID="GjQ-rq-EkP">
             <objects>
                 <navigationController id="HdN-eD-JKi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Charts" id="Jxb-ct-1zB"/>
+                    <tabBarItem key="tabBarItem" title="Chart" image="chart.png" id="Jxb-ct-1zB">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
+                    </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b92-1g-GlY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -710,7 +716,9 @@
         <scene sceneID="Twa-Ax-r8V">
             <objects>
                 <navigationController id="aOb-4w-Jqg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Genre" id="xyx-se-CHw"/>
+                    <tabBarItem key="tabBarItem" title="Genre" image="genre.png" id="xyx-se-CHw">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
+                    </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hcw-5I-xO6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -726,16 +734,20 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chart.png" width="50" height="50"/>
         <image name="default_avatar.png" width="200" height="200"/>
+        <image name="favourite.png" width="50" height="50"/>
+        <image name="genre.png" width="50" height="50"/>
         <image name="likeNo.png" width="128" height="128"/>
         <image name="next.png" width="100" height="100"/>
         <image name="pause.png" width="100" height="100"/>
         <image name="prev.png" width="100" height="100"/>
         <image name="repeatNo.png" width="100" height="100"/>
+        <image name="search.png" width="50" height="50"/>
         <image name="shuffleNo.png" width="100" height="100"/>
         <image name="stop.png" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0zn-kP-vHl"/>
+        <segue reference="Ehn-Sn-Bsz"/>
     </inferredMetricsTieBreakers>
 </document>
