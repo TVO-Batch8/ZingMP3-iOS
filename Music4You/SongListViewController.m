@@ -10,6 +10,7 @@
 
 @interface SongListViewController ()
 @property (strong, nonatomic) PlayMusicViewController *playMusicVC;
+@property (weak, nonatomic) IBOutlet UILabel *lbNoData;
 @end
 
 @implementation SongListViewController
@@ -71,6 +72,7 @@
         if (self.arraySong.count == 0) {
             [self.indicator stopAnimating];
             [self.tableSong setHidden:YES];
+            [self.lbNoData setHidden:NO];
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Can't load data! Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
             [alertView show];
             NSLog(@"No data founded");
@@ -82,6 +84,7 @@
             [self.indicator stopAnimating];
             [self.tableSong reloadData];
             [self.tableSong setHidden:NO];
+            [self.lbNoData setHidden:YES];
             [connection cancel];
             return;
         }

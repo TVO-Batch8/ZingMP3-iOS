@@ -58,7 +58,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favourite" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phs-QI-7Bq">
                                 <rect key="frame" x="251" y="290" width="98.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9Zg-Ga-xPt">
@@ -223,7 +223,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPE-5t-aNk">
                                 <rect key="frame" x="270" y="290" width="60.5" height="20"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -271,9 +271,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="VvY-b4-LUy">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="VvY-b4-LUy">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can't load data!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6K-HY-1WS">
+                                <rect key="frame" x="239" y="290" width="122.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uWD-2Z-Qa8">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -285,8 +291,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="C6K-HY-1WS" secondAttribute="centerY" id="BXL-T8-dDg"/>
                             <constraint firstItem="uWD-2Z-Qa8" firstAttribute="leading" secondItem="cba-zh-Bmt" secondAttribute="leading" id="JeZ-7P-oG1"/>
                             <constraint firstItem="NZD-HV-31f" firstAttribute="top" secondItem="uWD-2Z-Qa8" secondAttribute="bottom" id="Mnf-RJ-cYm"/>
+                            <constraint firstAttribute="centerX" secondItem="C6K-HY-1WS" secondAttribute="centerX" id="bei-RR-Dgo"/>
                             <constraint firstAttribute="centerY" secondItem="VvY-b4-LUy" secondAttribute="centerY" id="bfQ-NH-kG8"/>
                             <constraint firstAttribute="centerX" secondItem="VvY-b4-LUy" secondAttribute="centerX" id="juR-il-2ad"/>
                             <constraint firstItem="uWD-2Z-Qa8" firstAttribute="top" secondItem="plk-OA-rcv" secondAttribute="bottom" id="rrm-Ps-ett"/>
@@ -296,6 +304,7 @@
                     <navigationItem key="navigationItem" id="JU8-Il-hKN"/>
                     <connections>
                         <outlet property="indicator" destination="VvY-b4-LUy" id="gsO-le-o5I"/>
+                        <outlet property="lbNoData" destination="C6K-HY-1WS" id="4Jl-Sb-UpF"/>
                         <outlet property="tableSong" destination="uWD-2Z-Qa8" id="6cx-JQ-HTX"/>
                         <segue destination="eow-9V-nwp" kind="show" identifier="segueGenrePlay" id="0BQ-WG-03U"/>
                     </connections>
@@ -316,7 +325,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="arv-oG-1Xz">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="arv-oG-1Xz">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yiG-ab-Ova">
@@ -716,6 +725,6 @@
         <image name="stop.png" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ehn-Sn-Bsz"/>
+        <segue reference="Nt5-3j-eYO"/>
     </inferredMetricsTieBreakers>
 </document>
