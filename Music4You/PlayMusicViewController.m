@@ -157,7 +157,7 @@
     //self.song = [[AVPlayer alloc] initWithURL:urlAudio];
     
     
-    [self.lbNo setText:[NSString stringWithFormat:@"%d/%d", self.currentIndex + 1, self.arraySong.count]];
+    [self.lbNo setText:[NSString stringWithFormat:@"%d/%d", self.currentIndex + 1, (int)self.arraySong.count]];
     NSString *title = [currentSong objectAtIndex:1];
     [self.navigationItem setTitle:title];
     
