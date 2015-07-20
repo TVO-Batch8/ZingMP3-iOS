@@ -48,7 +48,7 @@
         <!--Favourites View Controller-->
         <scene sceneID="qzu-nV-kro">
             <objects>
-                <viewController id="25Q-43-brJ" customClass="FavouritesViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="25Q-43-brJ" customClass="FavouritesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IID-tv-rhK"/>
                         <viewControllerLayoutGuide type="bottom" id="RQk-Uv-t75"/>
@@ -133,7 +133,7 @@
         <!--Charts View Controller-->
         <scene sceneID="fiu-4x-1MK">
             <objects>
-                <viewController id="Km0-b3-zzA" customClass="ChartsViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Km0-b3-zzA" customClass="ChartsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d7X-S5-84R"/>
                         <viewControllerLayoutGuide type="bottom" id="pG3-mY-Y8B"/>
@@ -173,7 +173,7 @@
         <!--Search View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SearchViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="SearchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -269,7 +269,7 @@
         <!--Song List View Controller-->
         <scene sceneID="Kg3-oE-BL1">
             <objects>
-                <viewController id="BXE-yd-8VN" customClass="SongListViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BXE-yd-8VN" customClass="SongListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="plk-OA-rcv"/>
                         <viewControllerLayoutGuide type="bottom" id="NZD-HV-31f"/>
@@ -324,7 +324,7 @@
         <!--Chart Song List View Controller-->
         <scene sceneID="Ex2-1U-HZs">
             <objects>
-                <viewController id="uLf-EJ-xku" customClass="ChartSongListViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="uLf-EJ-xku" customClass="ChartSongListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iLU-Nw-zOL"/>
                         <viewControllerLayoutGuide type="bottom" id="F5U-DW-2da"/>
@@ -736,6 +736,6 @@
         <image name="stop.png" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0BQ-WG-03U"/>
+        <segue reference="0zn-kP-vHl"/>
     </inferredMetricsTieBreakers>
 </document>

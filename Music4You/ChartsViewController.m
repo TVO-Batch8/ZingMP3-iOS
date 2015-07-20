@@ -22,7 +22,6 @@
     self.coreDataHelper.context = self.managedObjectContext;
     
     self.arrayChart = [NSMutableArray arrayWithArray:[self.coreDataHelper fetchAllChart]];
-    [self.tableChart setBounces:NO];
     [self.navigationItem setTitle:@"Chart"];
     NSLog(@"Chart APIs: %@", [APIs getAPIsChartDetailWithChartID:@"IWZ9Z08I"]);
 }

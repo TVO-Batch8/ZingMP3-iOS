@@ -28,7 +28,6 @@
     
     self.arrayGenres = [NSMutableArray arrayWithArray:[self.coreDataHelper fetchAllGenre]];
     self.arraySubGenres = [NSMutableArray arrayWithArray:[self.coreDataHelper fetchAllSubGenre]];
-    [self.tableGenre setBounces:NO];
     
     NSLog(@"Genre APIs: %@", [APIs getAPIsSubGenreDetailWithID:@"IWZ9Z08E" onPage:@"1"]);
     // Do any additional setup after loading the view.

@@ -18,7 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.tableSong setBounces:NO];
     self.arraySong = [NSMutableArray array];
     [self.indicator setTransform:CGAffineTransformMakeScale(3, 3)];
     [self requestJsonDataWithSubGenreID:self.stringSubGenreID];

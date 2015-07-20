@@ -20,7 +20,6 @@
     NSLog(@"APIs: %@", [APIs getAPIsSearchsWithSearchKey:@"soledad" byCondition:@"1" onPage:@"1"]);
     self.arraySong = [NSMutableArray array];
     [self.tableSearch setHidden:YES];
-    [self.tableSearch setBounces:NO];
     [self.indicator setTransform:CGAffineTransformMakeScale(3, 3)];
     [self.navigationItem setTitle:@"Search"];
     //NSLog(@"APIs: %@", [APIs getAPIsCharts]);
