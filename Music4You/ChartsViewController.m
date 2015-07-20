@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     self.coreDataHelper = [[CoreDataHelper alloc] init];
     self.managedObjectContext = [self managedObjectContext];

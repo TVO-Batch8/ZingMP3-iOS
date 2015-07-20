@@ -20,6 +20,8 @@
     // Do any additional setup after loading the view.
     self.playMusicVC = ((AppDelegate *)([UIApplication sharedApplication].delegate)).playVC;
     [self.indicator setTransform:CGAffineTransformMakeScale(3, 3)];
+    [self.indicator startAnimating];
+    [self.tableSong setHidden:YES];
     self.arraySong = [NSMutableArray array];
     [self requestJsonDataWithChartID:self.chartID];
 }
