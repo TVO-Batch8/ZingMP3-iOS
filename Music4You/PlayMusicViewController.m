@@ -133,7 +133,7 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [self.moveView setHidden:NO];
+    [self.moveView setHidden:YES];
 }
 // begin spin avatar
 - (void) beginSpinAvatar {
