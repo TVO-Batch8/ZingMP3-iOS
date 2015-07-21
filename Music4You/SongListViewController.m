@@ -176,7 +176,6 @@
     return cell;
 }
 
-
 #pragma mark - UITableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self isConnected]) {
