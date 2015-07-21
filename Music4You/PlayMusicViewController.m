@@ -76,6 +76,7 @@
     panGesture.minimumNumberOfTouches = 1;
     panGesture.maximumNumberOfTouches = 1;
     [self.moveView addGestureRecognizer:panGesture];
+    [self.viewNowPlaying addGestureRecognizer:panGesture];
     
 }
 
@@ -129,15 +130,27 @@
     if (self.song.rate != 1.0f) {
         [self.btnPause setSelected:YES];
         [self.btnPauseBackground setSelected:YES];
-        [[UIApplication sharedApplication].keyWindow addSubview:self.viewNowPlaying];
+        
         //[self.iVAvatar.layer removeAnimationForKey:@"Spin"];
     }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    
+    //[self addConstraintForNowPlaying];
     [self.moveView setHidden:YES];
+    
+    //[[UIApplication sharedApplication].keyWindow addSubview:self.viewNowPlaying];
 }
+
+- (void) addConstraintForNowPlaying {
+    [self.viewNowPlaying setTranslatesAutoresizingMaskIntoConstraints:NO];
+    NSDictionary *dicView = @{@"nowPlaying":self.viewNowPlaying};
+    NSArray *horizontal = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[nowPlaying]-0-|" options:0 metrics:nil views:dicView];
+    [self.view addConstraints:horizontal];
+    NSArray *vertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-90-[nowPlaying]" options:0 metrics:nil views:dicView];
+    [self.view addConstraints:vertical];
+}
+
 // begin spin avatar
 - (void) beginSpinAvatar {
     CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
@@ -457,7 +470,7 @@
 - (void)handlePansGesture:(UIPanGestureRecognizer *)paramGesture {
     UIView *view = paramGesture.view;
     CGPoint currentTouch = [paramGesture locationInView:self.view];
-    if (view == self.viewNowPlaying) {
+    if (view == self.moveView) {
         if (paramGesture.state == UIGestureRecognizerStateBegan) {
             touchedPoint = CGPointMake(view.center.x - currentTouch.x,view.center.y - currentTouch.y);
         } else if (paramGesture.state != UIGestureRecognizerStateCancelled && paramGesture.state != UIGestureRecognizerStateFailed) {

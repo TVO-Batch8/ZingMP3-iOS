@@ -8,7 +8,9 @@
 
 #import "SearchViewController.h"
 
-@interface SearchViewController ()
+@interface SearchViewController () {
+    int resultCountTotal;
+}
 @property (strong, nonatomic) PlayMusicViewController *playMusicVC;
 @end
 
@@ -35,9 +37,9 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     //[self.view endEditing:YES];
+    [self.lbNoData setHidden:YES];
     [self.searchBar endEditing:YES];
     NSString *searchKey = searchBar.text;
-    
     if ([self isConnected]) {
         [self.arraySong removeAllObjects];
         [self.indicator startAnimating];
@@ -51,14 +53,13 @@
             [self.lbNoData setHidden:NO];
         }
     } else {
-        UIAlertView *alertViewConnect = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+        UIAlertView *alertViewConnect = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
         [alertViewConnect show];
     }
-    
-    
 }
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [self.searchBar endEditing:YES];
+    [self.indicator stopAnimating];
     [self.searchBar setText:nil];
     [self.tableSearch setHidden:YES];
     [self.lbNoData setHidden:NO];
@@ -120,7 +121,7 @@
             [connection cancel];
             return;
         }
-        if (self.arraySong.count >= 95) {
+        if (self.arraySong.count >= 45) {
             // update UI
             [self.indicator stopAnimating];
             [self.lbNoData setHidden:YES];
@@ -147,6 +148,8 @@
         [self.tableSearch setHidden:YES];
         [self.lbNoData setHidden:NO];
         return;
+    } else {
+        resultCountTotal = resultCount;
     }
     [self.tableSearch setHidden:NO];
     NSArray *data = [json valueForKey:@"Data"];
