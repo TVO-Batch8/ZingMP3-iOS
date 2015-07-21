@@ -210,6 +210,8 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
         [alertView show];
         [self.iVAvatar.layer removeAnimationForKey:@"Spin"];
+        [self.btnPause setSelected:YES];
+        [self.btnPauseBackground setSelected:YES];
     }
 }
 
@@ -295,13 +297,23 @@
 
 - (IBAction)btnPauseTouched:(id)sender {
     [self.btnPause setSelected:!self.btnPause.isSelected];
-    [self.btnPauseBackground setSelected:!self.btnPauseBackground.isSelected];
+//    [self.btnPauseBackground setSelected:!self.btnPauseBackground.isSelected];
     if (self.song.rate == 1.0f) {
         [self.song pause];
         [self.iVAvatar.layer removeAnimationForKey:@"Spin"];
+        [self.btnPause setSelected:YES];
+        [self.btnPauseBackground setSelected:YES];
     } else {
-        [self.song play];
-        [self beginSpinAvatar];
+        if ([self isConnected]) {
+            [self.song play];
+            [self beginSpinAvatar];
+            [self.btnPause setSelected:NO];
+            [self.btnPauseBackground setSelected:NO];
+        } else {
+            
+            [self.btnPause setSelected:YES];
+            [self.btnPauseBackground setSelected:YES];
+        }
     }
 }
 
