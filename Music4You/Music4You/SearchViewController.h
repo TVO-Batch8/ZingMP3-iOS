@@ -24,5 +24,6 @@
 @property (strong, nonatomic) NSURLResponse *urlResponse;
 @property (strong, nonatomic) NSMutableData *downloadedData;
 @property (strong, nonatomic) NSMutableArray *arraySong;
+- (BOOL) isConnected;
 @end
 

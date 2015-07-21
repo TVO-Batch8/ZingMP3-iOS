@@ -12,7 +12,7 @@
 #import "PlayMusicViewController.h"
 #define favouriteCellID @"favouriteCellID"
 
-@interface FavouritesViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface FavouritesViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -22,4 +22,5 @@
 @property (strong, nonatomic) NSMutableArray *arrayFavourites;
 
 @property (strong, nonatomic) NSMutableArray *arraySong;
+- (BOOL) isConnected;
 @end

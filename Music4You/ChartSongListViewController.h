@@ -21,4 +21,5 @@
 @property (strong, nonatomic) NSMutableArray *arraySong;
 @property (strong, nonatomic) NSString *chartID;
 @property (strong, nonatomic) NSString *chartName;
+- (BOOL) isConnected;
 @end

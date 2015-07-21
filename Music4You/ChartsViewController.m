@@ -77,7 +77,12 @@
 
 #pragma mark - UITableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"segueChart" sender:self];
+    if ([self isConnected]) {
+        [self performSegueWithIdentifier:@"segueChart" sender:self];
+    } else {
+        UIAlertView *alertNotConnected = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+        [alertNotConnected show];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -90,6 +95,19 @@
         [chartSongListVC.arraySong removeAllObjects];
     }
 }
+
+- (BOOL) isConnected {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return networkStatus != NotReachable;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: UIApplicationOpenSettingsURLString]];
+    }
+}
+
 /*
 #pragma mark - Navigation
 

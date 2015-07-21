@@ -130,7 +130,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //[((AppDelegate *)([UIApplication sharedApplication].delegate)).song pause];
-    [self performSegueWithIdentifier:@"segueFavourite" sender:self];
+    if ([self isConnected]) {
+        [self performSegueWithIdentifier:@"segueFavourite" sender:self];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+        [alertView show];
+    }
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -161,6 +166,19 @@
         self.playMusicVC.currentIndex = selectedIndex;
     }
 }
+
+- (BOOL) isConnected {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return networkStatus != NotReachable;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }
+}
+
 /*
  #pragma mark - Navigation
  

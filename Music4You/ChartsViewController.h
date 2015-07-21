@@ -11,11 +11,12 @@
 #import "ChartSongListViewController.h"
 #define chartCellID @"chartCellID"
 
-@interface ChartsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
+@interface ChartsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableChart;
 @property (strong, nonatomic) NSMutableArray *arrayChart;
+- (BOOL) isConnected;
 @end

@@ -37,18 +37,25 @@
     //[self.view endEditing:YES];
     [self.searchBar endEditing:YES];
     NSString *searchKey = searchBar.text;
-    NSLog(@"%@", searchKey);
-    [self.arraySong removeAllObjects];
-    [self.indicator startAnimating];
-    [self requestJsonDataWithSearchKey:searchKey];
     
-    if (self.arraySong.count >= 1) {
-        [self.tableSearch setHidden:NO];
-        [self.lbNoData setHidden:YES];
+    if ([self isConnected]) {
+        [self.arraySong removeAllObjects];
+        [self.indicator startAnimating];
+        [self requestJsonDataWithSearchKey:searchKey];
+        
+        if (self.arraySong.count >= 1) {
+            [self.tableSearch setHidden:NO];
+            [self.lbNoData setHidden:YES];
+        } else {
+            [self.tableSearch setHidden:YES];
+            [self.lbNoData setHidden:NO];
+        }
     } else {
-        [self.tableSearch setHidden:YES];
-        [self.lbNoData setHidden:NO];
+        UIAlertView *alertViewConnect = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+        [alertViewConnect show];
     }
+    
+    
 }
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [self.searchBar endEditing:YES];
@@ -104,8 +111,11 @@
             [self.indicator stopAnimating];
             [self.lbNoData setHidden:NO];
             [self.tableSearch setHidden:YES];
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"No result! Check your search key or internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
-            [alertView show];
+            UIAlertView *alertViewNoResult = [[UIAlertView alloc] initWithTitle:nil message:@"No result! Check your search key." delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+            [alertViewNoResult show];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [alertViewNoResult dismissWithClickedButtonIndex:0 animated:YES];
+            });
             NSLog(@"No data founded");
             [connection cancel];
             return;
@@ -251,6 +261,11 @@
     }
 }
 
+- (BOOL) isConnected {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return networkStatus != NotReachable;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

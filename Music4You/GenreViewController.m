@@ -99,7 +99,7 @@
     if ([self isConnected]) {
         [self performSegueWithIdentifier:@"segueGenre" sender:self];
     } else {
-        UIAlertView *alertNotConnected = [[UIAlertView alloc] initWithTitle:nil message:@"Not connected!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+        UIAlertView *alertNotConnected = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
         [alertNotConnected show];
     }
     
