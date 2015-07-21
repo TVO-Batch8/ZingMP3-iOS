@@ -289,7 +289,7 @@
     NSString *statusString;
     switch (status) {
         case NotReachable: {
-            [self.song pause];
+            //[self.song pause];
             statusString = @"Not Reachable";
             UIAlertView *alertViewDisconnect = [[UIAlertView alloc] initWithTitle:statusString message:@"Check your internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
             [alertViewDisconnect show];

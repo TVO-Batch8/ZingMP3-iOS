@@ -13,7 +13,7 @@
 #import "AutoScrollLabel.h"
 #define RADIANS(degrees) ((degrees * M_PI) / 180.0)
 
-@interface PlayMusicViewController : UIViewController<AVAudioPlayerDelegate>
+@interface PlayMusicViewController : UIViewController<AVAudioPlayerDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -29,5 +29,5 @@
 
 @property (weak, nonatomic) IBOutlet UIView *moveView;
 @property (weak, nonatomic) IBOutlet UIView *viewNowPlaying;
-
+- (BOOL) isConnected;
 @end

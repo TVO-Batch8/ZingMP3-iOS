@@ -59,7 +59,7 @@
     
     self.song = ((AppDelegate *)([UIApplication sharedApplication].delegate)).song;
     //self.isPlayingSongSelected = NO;
-    
+    //self.song = [[AVPlayer alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChangeNotification:) name:UIDeviceOrientationDidChangeNotification object:nil];
     [self.tabBarController.tabBar setHidden:YES];
@@ -121,7 +121,6 @@
     [self.btnPauseBackground setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateSelected];
     
     [self.moveView setHidden:YES];
-    
     [self playSong];
     
 }
@@ -136,10 +135,10 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    //[self addConstraintForNowPlaying];
     [self.moveView setHidden:YES];
     
-    //[[UIApplication sharedApplication].keyWindow addSubview:self.viewNowPlaying];
+    //[[UIApplication sharedApplication].delegate.window addSubview:self.viewNowPlaying];
+    //[self addConstraintForNowPlaying];
 }
 
 - (void) addConstraintForNowPlaying {
@@ -147,7 +146,7 @@
     NSDictionary *dicView = @{@"nowPlaying":self.viewNowPlaying};
     NSArray *horizontal = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[nowPlaying]-0-|" options:0 metrics:nil views:dicView];
     [self.view addConstraints:horizontal];
-    NSArray *vertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-90-[nowPlaying]" options:0 metrics:nil views:dicView];
+    NSArray *vertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[nowPlaying(65)]-0-|" options:0 metrics:nil views:dicView];
     [self.view addConstraints:vertical];
 }
 
@@ -162,63 +161,56 @@
 }
 
 - (void) playSong {
-    // iD, title, artist, artistAvatar, composer, linkPlay
-    
-    NSArray *currentSong = [self.arraySong objectAtIndex:self.currentIndex];
-    NSString *linkPlay128 = [currentSong objectAtIndex:5];
-    NSURL *urlAudio = [NSURL URLWithString:linkPlay128];
-    //self.song = [AVPlayer playerWithURL:urlAudio];
-    AVPlayerItem *playerItem = [[AVPlayerItem alloc] initWithURL:urlAudio];
-    [self.song replaceCurrentItemWithPlayerItem:playerItem];
-    //self.song = [[AVPlayer alloc] initWithURL:urlAudio];
-    
-    
-    [self.lbNo setText:[NSString stringWithFormat:@"%d/%d", self.currentIndex + 1, (int)self.arraySong.count]];
-    NSString *title = [currentSong objectAtIndex:1];
-    [self.navigationItem setTitle:title];
-    
-    
-    NSString *artist = [currentSong objectAtIndex:2];
-    [self.lbArtist setText:artist];
-    
-    NSString *composer = [currentSong objectAtIndex:4];
-    [self.lbComposer setText:composer];
-    
-    NSString *avatar = [currentSong objectAtIndex:3];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSURL *urlAvatar = [NSURL URLWithString:avatar];
-        NSData *dataAvatar = [NSData dataWithContentsOfURL:urlAvatar];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.iVAvatar setImage:[UIImage imageWithData:dataAvatar]];
+    if ([self isConnected]) {
+        // iD, title, artist, artistAvatar, composer, linkPlay
+        NSArray *currentSong = [self.arraySong objectAtIndex:self.currentIndex];
+        NSString *linkPlay128 = [currentSong objectAtIndex:5];
+        NSURL *urlAudio = [NSURL URLWithString:linkPlay128];
+        AVPlayerItem *playerItem = [[AVPlayerItem alloc] initWithURL:urlAudio];
+        [self.song replaceCurrentItemWithPlayerItem:playerItem];
+        [self.lbNo setText:[NSString stringWithFormat:@"%d/%d", self.currentIndex + 1, (int)self.arraySong.count]];
+        NSString *title = [currentSong objectAtIndex:1];
+        [self.navigationItem setTitle:title];NSString *artist = [currentSong objectAtIndex:2];
+        [self.lbArtist setText:artist];
+        
+        NSString *composer = [currentSong objectAtIndex:4];
+        [self.lbComposer setText:composer];
+        
+        NSString *avatar = [currentSong objectAtIndex:3];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSURL *urlAvatar = [NSURL URLWithString:avatar];
+            NSData *dataAvatar = [NSData dataWithContentsOfURL:urlAvatar];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.iVAvatar setImage:[UIImage imageWithData:dataAvatar]];
+            });
         });
-    });
-    
-    [self beginSpinAvatar];
-    
-    Favourite *favourite = [self.coreDataHelper queryFavouriteWithID:[currentSong objectAtIndex:0]];
-    if (favourite) {
-        [self.btnFavourite setSelected:YES];
+        
+        [self beginSpinAvatar];
+        
+        Favourite *favourite = [self.coreDataHelper queryFavouriteWithID:[currentSong objectAtIndex:0]];
+        if (favourite) {
+            [self.btnFavourite setSelected:YES];
+        } else {
+            [self.btnFavourite setSelected:NO];
+        }
+        
+        NSTimeInterval duration = CMTimeGetSeconds(self.song.currentItem.asset.duration);
+        [self.lbTotal setText:[NSString stringWithFormat:@"%@", [self timeFormat:duration]]];
+        
+        if(self.timer) {
+            [self.timer invalidate];
+            self.timer = nil;
+        }
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateSliderValue) userInfo:nil repeats:YES];
+        //self.slider.minimumValue = 0;
+        self.slider.maximumValue = CMTimeGetSeconds(self.song.currentItem.asset.duration);
+        [self.song play];
     } else {
-        [self.btnFavourite setSelected:NO];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+        [alertView show];
+        [self.iVAvatar.layer removeAnimationForKey:@"Spin"];
     }
-    
-    
-    
-    
-    
-    
-    NSTimeInterval duration = CMTimeGetSeconds(self.song.currentItem.asset.duration);
-    [self.lbTotal setText:[NSString stringWithFormat:@"%@", [self timeFormat:duration]]];
-    
-    if(self.timer) {
-        [self.timer invalidate];
-        self.timer = nil;
-    }
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateSliderValue) userInfo:nil repeats:YES];
-    //self.slider.minimumValue = 0;
-    self.slider.maximumValue = CMTimeGetSeconds(self.song.currentItem.asset.duration);
-    [self.song play];
 }
 
 // update slider value with song's current time
@@ -231,7 +223,6 @@
     //NSLog(@"Played %d - Remain -%d  ",(int)playTime, (int)remain);
     [self.lbCurrent setText:[NSString stringWithFormat:@"%@", [self timeFormat:playTime]]];
     [self.lbRemain setText:[NSString stringWithFormat:@"-%@", [self timeFormat:remain]]];
- 
     
     if(remain <= 1){
         if(self.timer) {
@@ -262,10 +253,8 @@
 
 // action play song with current time following slider value
 - (IBAction)sliderValueChanged:(id)sender {
+//    if ([self isConnected]) {
     [self.song pause];
-    //self.song.currentTime = self.slider.value;
-    
-    
     NSTimeInterval playTime = CMTimeGetSeconds([self.song currentTime]);
     NSTimeInterval duration = CMTimeGetSeconds(self.song.currentItem.asset.duration);
     float remain = duration - playTime;
@@ -279,21 +268,29 @@
         [self.btnPause setSelected:NO];
         [self.btnPauseBackground setSelected:NO];
     }
-    
+//    } else {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+//        [alertView show];
+//    }
 }
 
 - (IBAction)btnPrevTouched:(id)sender {
-    [self.song pause];
-    [self.btnPause setSelected:NO];
-    [self.btnPauseBackground setSelected:NO];
-
-    //[self.slider setValue:0 animated:YES];
-    if (self.currentIndex > 0) {
-        self.currentIndex -= 1;
+    if ([self isConnected]) {
+        [self.song pause];
+        [self.btnPause setSelected:NO];
+        [self.btnPauseBackground setSelected:NO];
+        
+        //[self.slider setValue:0 animated:YES];
+        if (self.currentIndex > 0) {
+            self.currentIndex -= 1;
+        } else {
+            self.currentIndex = (int)self.arraySong.count - 1;
+        }
+        [self playSong];
     } else {
-        self.currentIndex = (int)self.arraySong.count - 1;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+        [alertView show];
     }
-    [self playSong];
 }
 
 - (IBAction)btnPauseTouched:(id)sender {
@@ -318,17 +315,29 @@
 }
 
 - (IBAction)btnNextTouched:(id)sender {
-    [self.song pause];
-    [self.slider setValue:0 animated:YES];
-    [self.btnPause setSelected:NO];
-    [self.btnPauseBackground setSelected:NO];
-    
-    if (self.currentIndex < self.arraySong.count - 1) {
-        self.currentIndex += 1;
+    if ([self isConnected]) {
+        [self.song pause];
+        [self.slider setValue:0 animated:YES];
+        [self.btnPause setSelected:NO];
+        [self.btnPauseBackground setSelected:NO];
+        
+        if (self.currentIndex < self.arraySong.count - 1) {
+            self.currentIndex += 1;
+        } else {
+            self.currentIndex = 0;
+        }
+        [self playSong];
     } else {
-        self.currentIndex = 0;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+        [alertView show];
     }
-    [self playSong];
+    
+//    if ([self isConnected]) {
+//        
+//    } else {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+//        [alertView show];
+//    }
 }
 
 // action btnFavourite touched
@@ -421,15 +430,21 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)btnPrevBackgroundTouched:(id)sender {
-    [self.song pause];
-    [self.btnPause setSelected:NO];
-    [self.btnPauseBackground setSelected:NO];
-    if (self.currentIndex > 0) {
-        self.currentIndex -= 1;
+    if ([self isConnected]) {
+        [self.song pause];
+        [self.btnPause setSelected:NO];
+        [self.btnPauseBackground setSelected:NO];
+        if (self.currentIndex > 0) {
+            self.currentIndex -= 1;
+        } else {
+            self.currentIndex = (int)self.arraySong.count - 1;
+        }
+        [self playSong];
     } else {
-        self.currentIndex = (int)self.arraySong.count - 1;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+        [alertView show];
     }
-    [self playSong];
+    
 }
 
 
@@ -445,17 +460,22 @@
     }
 }
 - (IBAction)btnNextBackgroundTouched:(id)sender {
-    [self.song pause];
-    [self.slider setValue:0 animated:YES];
-    [self.btnPause setSelected:NO];
-    [self.btnPauseBackground setSelected:NO];
-    
-    if (self.currentIndex < self.arraySong.count - 1) {
-        self.currentIndex += 1;
+    if ([self isConnected]) {
+        [self.song pause];
+        [self.slider setValue:0 animated:YES];
+        [self.btnPause setSelected:NO];
+        [self.btnPauseBackground setSelected:NO];
+        
+        if (self.currentIndex < self.arraySong.count - 1) {
+            self.currentIndex += 1;
+        } else {
+            self.currentIndex = 0;
+        }
+        [self playSong];
     } else {
-        self.currentIndex = 0;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Check your internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+        [alertView show];
     }
-    [self playSong];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -478,6 +498,19 @@
         }
     }
 }
+
+- (BOOL) isConnected {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return networkStatus != NotReachable;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }
+}
+
 /*
 #pragma mark - Navigation
 
