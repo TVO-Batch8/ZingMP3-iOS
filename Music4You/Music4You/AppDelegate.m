@@ -40,6 +40,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkStatusNotification:) name:kReachabilityChangedNotification object:nil];
     self.reachability = [Reachability reachabilityForInternetConnection];
     [self.reachability startNotifier];
+    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 // prepare Genre and SubGenre data for App if no Genre and SubGenre data available

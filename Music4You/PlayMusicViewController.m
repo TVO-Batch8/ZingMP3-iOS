@@ -48,7 +48,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [[UIApplication sharedApplication].keyWindow addSubview:self.moveView];
+    //[[UIApplication sharedApplication].keyWindow addSubview:self.viewNowPlaying];
     
     self.coreDataHelper = [[CoreDataHelper alloc] init];
     self.managedObjectContext = [self managedObjectContext];
@@ -122,17 +122,20 @@
     [self.moveView setHidden:YES];
     
     [self playSong];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     if (self.song.rate != 1.0f) {
         [self.btnPause setSelected:YES];
         [self.btnPauseBackground setSelected:YES];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.viewNowPlaying];
         //[self.iVAvatar.layer removeAnimationForKey:@"Spin"];
     }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
+    
     [self.moveView setHidden:YES];
 }
 // begin spin avatar
@@ -454,7 +457,7 @@
 - (void)handlePansGesture:(UIPanGestureRecognizer *)paramGesture {
     UIView *view = paramGesture.view;
     CGPoint currentTouch = [paramGesture locationInView:self.view];
-    if (view == self.moveView) {
+    if (view == self.viewNowPlaying) {
         if (paramGesture.state == UIGestureRecognizerStateBegan) {
             touchedPoint = CGPointMake(view.center.x - currentTouch.x,view.center.y - currentTouch.y);
         } else if (paramGesture.state != UIGestureRecognizerStateCancelled && paramGesture.state != UIGestureRecognizerStateFailed) {

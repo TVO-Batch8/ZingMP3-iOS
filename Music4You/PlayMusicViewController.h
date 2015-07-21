@@ -28,5 +28,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnNextBackground;
 
 @property (weak, nonatomic) IBOutlet UIView *moveView;
+@property (weak, nonatomic) IBOutlet UIView *viewNowPlaying;
 
 @end
