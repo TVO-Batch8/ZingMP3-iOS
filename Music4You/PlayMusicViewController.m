@@ -76,7 +76,7 @@
     panGesture.minimumNumberOfTouches = 1;
     panGesture.maximumNumberOfTouches = 1;
     [self.moveView addGestureRecognizer:panGesture];
-    [self.viewNowPlaying addGestureRecognizer:panGesture];
+    //[self.viewNowPlaying addGestureRecognizer:panGesture];
     
 }
 
@@ -135,8 +135,8 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [self.moveView setHidden:YES];
-    
+    [self.moveView setHidden:NO];
+    //[[UIApplication sharedApplication].delegate.window addSubview:self.moveView];
     //[[UIApplication sharedApplication].delegate.window addSubview:self.viewNowPlaying];
     //[self addConstraintForNowPlaying];
 }
@@ -226,7 +226,7 @@
     [self.lbCurrent setText:[NSString stringWithFormat:@"%@", [self timeFormat:playTime]]];
     [self.lbRemain setText:[NSString stringWithFormat:@"-%@", [self timeFormat:remain]]];
     
-    if(remain <= 1){
+    if(0 < remain && remain < 1){
         if(self.timer) {
             [self.timer invalidate];
             self.timer = nil;
