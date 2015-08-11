@@ -57,9 +57,9 @@
     self.iVAvatar.layer.cornerRadius = 82;
     self.iVAvatar.layer.masksToBounds = YES;
     
-    self.song = ((AppDelegate *)([UIApplication sharedApplication].delegate)).song;
+    //self.song = ((AppDelegate *)([UIApplication sharedApplication].delegate)).song;
     //self.isPlayingSongSelected = NO;
-    //self.song = [[AVPlayer alloc] init];
+    self.song = [[AVPlayer alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChangeNotification:) name:UIDeviceOrientationDidChangeNotification object:nil];
     [self.tabBarController.tabBar setHidden:YES];
@@ -129,14 +129,18 @@
     if (self.song.rate != 1.0f) {
         [self.btnPause setSelected:YES];
         [self.btnPauseBackground setSelected:YES];
-        
         //[self.iVAvatar.layer removeAnimationForKey:@"Spin"];
     }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [self.moveView setHidden:NO];
-    //[[UIApplication sharedApplication].delegate.window addSubview:self.moveView];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[UIApplication sharedApplication].delegate.window addSubview:self.moveView];
+    });
+    
     //[[UIApplication sharedApplication].delegate.window addSubview:self.viewNowPlaying];
     //[self addConstraintForNowPlaying];
 }

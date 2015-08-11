@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -12,8 +12,41 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading.png" translatesAutoresizingMaskIntoConstraints="NO" id="uvG-BY-cNx">
+                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="98.5"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading.png" translatesAutoresizingMaskIntoConstraints="NO" id="l5d-6i-6jp">
+                        <rect key="frame" x="213" y="0.0" width="106.5" height="98.5"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading.png" translatesAutoresizingMaskIntoConstraints="NO" id="UGN-05-hqn">
+                        <rect key="frame" x="106" y="0.0" width="106.5" height="98.5"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="l5d-6i-6jp" secondAttribute="trailing" id="1uN-zT-Nfa"/>
+                    <constraint firstItem="uvG-BY-cNx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="4M2-03-eVr"/>
+                    <constraint firstAttribute="bottom" secondItem="UGN-05-hqn" secondAttribute="bottom" id="8G2-P5-mgh"/>
+                    <constraint firstItem="uvG-BY-cNx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Aiu-z5-aGZ"/>
+                    <constraint firstItem="l5d-6i-6jp" firstAttribute="leading" secondItem="UGN-05-hqn" secondAttribute="trailing" id="Asx-YN-pQM"/>
+                    <constraint firstAttribute="bottom" secondItem="uvG-BY-cNx" secondAttribute="bottom" id="G1C-Xb-vme"/>
+                    <constraint firstAttribute="bottom" secondItem="l5d-6i-6jp" secondAttribute="bottom" id="Ykv-8r-K1k"/>
+                    <constraint firstItem="uvG-BY-cNx" firstAttribute="width" secondItem="l5d-6i-6jp" secondAttribute="width" id="g1f-Ek-M7R"/>
+                    <constraint firstItem="UGN-05-hqn" firstAttribute="width" secondItem="uvG-BY-cNx" secondAttribute="width" id="gaZ-Ve-z5T"/>
+                    <constraint firstItem="UGN-05-hqn" firstAttribute="leading" secondItem="uvG-BY-cNx" secondAttribute="trailing" id="myG-iK-UZo"/>
+                    <constraint firstItem="l5d-6i-6jp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xDQ-kW-ksQ"/>
+                    <constraint firstItem="UGN-05-hqn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yJ0-YT-PWM"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="iV1" destination="uvG-BY-cNx" id="sbp-mn-iIB"/>
+                <outlet property="iV2" destination="UGN-05-hqn" id="XLs-Fx-QYv"/>
+                <outlet property="iV3" destination="l5d-6i-6jp" id="Evo-os-LGK"/>
+            </connections>
             <point key="canvasLocation" x="317" y="225.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="loading.png" width="100" height="100"/>
+    </resources>
 </document>

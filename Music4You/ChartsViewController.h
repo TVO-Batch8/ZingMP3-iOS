@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreDataHelper.h"
+#import "ChartTableViewCell.h"
 #import "ChartSongListViewController.h"
 #define chartCellID @"chartCellID"
 
@@ -16,7 +17,13 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 
+@property (weak, nonatomic) IBOutlet UILabel *lbNoData;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableChart;
 @property (strong, nonatomic) NSMutableArray *arrayChart;
+
+@property (strong, nonatomic) NSMutableData *downloadedData;
+@property (strong, nonatomic) NSURLResponse *urlResponse;
+@property (strong, nonatomic) NSMutableArray *arrayAvatar;
 - (BOOL) isConnected;
 @end

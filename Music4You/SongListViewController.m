@@ -166,6 +166,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         
         NSData *dataAvatar = [NSData dataWithContentsOfURL:urlAvatar];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             UIImage *avatar = [UIImage imageWithData:dataAvatar];
             if (avatar) {
@@ -174,6 +175,14 @@
         });
     });
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row % 2 == 0) {
+        [cell setBackgroundColor:[UIColor yellowColor]];
+    } else {
+        [cell setBackgroundColor:[UIColor whiteColor]];
+    }
 }
 
 #pragma mark - UITableView delegate

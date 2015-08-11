@@ -251,8 +251,7 @@
 
 - (void)incomingCallHandling {
     CTCallCenter * _callCenter = [[CTCallCenter alloc] init];
-    _callCenter.callEventHandler = ^(CTCall* call)
-    {
+    _callCenter.callEventHandler = ^(CTCall* call) {
         
         if ([call.callState isEqualToString:CTCallStateDisconnected])
         {

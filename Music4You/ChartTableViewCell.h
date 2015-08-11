@@ -10,4 +10,7 @@
 
 @interface ChartTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *iV1;
+@property (weak, nonatomic) IBOutlet UIImageView *iV2;
+@property (weak, nonatomic) IBOutlet UIImageView *iV3;
 @end
